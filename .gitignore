@@ -34,3 +34,6 @@ docs
 
 # Exclude sketch files
 *.sketch
+
+# Exclude linter
+.eslintrc
