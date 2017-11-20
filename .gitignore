@@ -28,3 +28,9 @@ node_modules
 
 # Debug log from npm
 npm-debug.log
+
+# Exclude (for the moment the docs directory)
+docs
+
+# Exclude sketch files
+*.sketch
