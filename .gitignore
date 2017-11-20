@@ -37,3 +37,6 @@ docs
 
 # Exclude linter
 .eslintrc
+
+# Exclude OSX files
+.DS_Store
