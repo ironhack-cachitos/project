@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+require("../passport/config");
 
 router.get(
   "/github",
@@ -12,7 +13,7 @@ router.get(
   passport.authenticate("github", { failureRedirect: "/" }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect("/repositories");
+    res.redirect("/main");
   }
 );
 router.get("/logout", function(req, res) {

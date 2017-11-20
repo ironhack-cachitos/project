@@ -9,14 +9,13 @@ const mongoose = require("mongoose");
 
 mongoose.connect("mongodb://localhost/ih-cachitos");
 
-var passport = require("./passport/config");
+const passport = require("./passport/config");
 const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.set("layout", "layout");
-
 // default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
 
@@ -32,10 +31,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const index = require("./routes/index");
-const auth = require("./routes/auth")
+const auth = require("./routes/auth");
+const main = require("./routes/main");
+
 app.use("/", index);
 app.use("/auth", auth);
-
+app.use("/main", main);
 
 
 // catch 404 and forward to error handler

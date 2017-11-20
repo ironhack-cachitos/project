@@ -13,13 +13,13 @@ const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 
 // Initialize GitHubStrategy
-const User = require("../models/user");
+const User = require("../models/User");
 passport.use(
   new GitHubStrategy(
     {
       clientID: GITHUB_CLIENT_ID,
       clientSecret: GITHUB_CLIENT_SECRET,
-      callbackURL: "http://127.0.0.1:3000/auth/github/callback"
+      callbackURL: "http://localhost:3000/auth/github/callback"
     },
     function(accessToken, refreshToken, profile, done) {
       if (profile._json.id) {
@@ -47,18 +47,12 @@ passport.use(
         avatar
       });
 
-      User.findOne({ githubId: newUser.githubId })
-        .exec()
-        .then(user => {
-          if (!user) return new User(newUser).save();
-          return User.findByIdAndUpdate(user._id, newUser, {
-            new: true
-          }).exec();
-        })
-        .then(user => next(null, user))
-        .catch(e => next(e));
+      User.findOrCreate(newUser, function(err, user) {
+        return done(err, user);
+      });
     }
   )
 );
 
 module.exports = passport;
+
