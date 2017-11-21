@@ -40,3 +40,6 @@ docs
 
 # Exclude OSX files
 .DS_Store
+
+# Exclude the static html views
+public/static-html
