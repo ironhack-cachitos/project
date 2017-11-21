@@ -1,12 +1,10 @@
-
-
-<form action="/login" method="POST">
+<form action="/auth/login" method="POST">
     <div>
-        <label for="username">Username:</label>
+        <label for="username">USUARIO:</label>
         <input type="text" name="username">
     </div>
     <div>
-        <label for="password">Password:</label>
+        <label for="password">CONTRASEÑA:</label>
         <input type="password" name="password">
     </div>
     <% if (typeof message != "undefined") { %>
@@ -14,13 +12,16 @@
             <%= message %>
         </div>
         <% } %>
-    <div>
-        <input type="submit" value="Log In">
-    </div>
-    <a href="/auth/github" class="btn btn-lg btn-primary" role="button">
-        Login with GitHub
-    </a>
-    <div>
-        <button href="/auth/singup" role="button">Create account</button>
-    </div>
-</form>r
+            <div>
+                <input type="submit" value="Log In" href="/auth/login">
+            </div>
+            <div>
+                <input href="/auth/github" value="Login with GitHub" type="submit"></input>
+            </div>
+            <a href="/auth/github" class="btn btn-lg btn-primary" role="button">
+                Login with GitHub
+            </a>
+</form>
+<form action="/auth/signup" method="GET">
+    <input type="submit" name="newuser" value="Registro de Usuario" href="/auth/signup">
+</form>

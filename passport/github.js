@@ -1,21 +1,22 @@
 const passport = require("passport");
 const GitHubStrategy = require("passport-github2").Strategy;
-const findOrCreate = require("mongoose-findorcreate"); 
+const findOrCreate = require("mongoose-findorcreate");
+const User = require("../models/User");
 
 require("dotenv").config();
 
-passport.serializeUser(function(user, cb) {
-  cb(null, user);
-});
-passport.deserializeUser(function(obj, cb) {
-  cb(null, obj);
-});
+// passport.serializeUser(function(user, cb) {
+//   cb(null, user);
+// });
+// passport.deserializeUser(function(obj, cb) {
+//   cb(null, obj);
+// });
 
 const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 
 // Initialize GitHubStrategy
-const User = require("../models/User");
+
 passport.use(
   new GitHubStrategy(
     {
@@ -23,7 +24,11 @@ passport.use(
       clientSecret: GITHUB_CLIENT_SECRET,
       callbackURL: "http://localhost:3000/auth/github/callback"
     },
-    function(accessToken, refreshToken, profile, done) {
+     (accessToken, refreshToken, profile, cb) => {
+    User.findOne({ githubId: profile.id }, (err, user) => {
+      if (err) { return cb(err); }
+      if (user) { return cb(null, user); }
+    //function(accessToken, refreshToken, profile, done) {
       if (profile._json.id) {
         var githubId = profile._json.id;
       }
@@ -48,17 +53,18 @@ passport.use(
         email,
         avatar
       });
-      //console.log(typeof newUser);
-     // console.log(typeof newUser.token);
-
-      User.create(newUser, function(err, user) {
-        if (err) {return done(err, user);}
-        return done(err, user)
-
+    
+       newUser.save((err) => {
+        if (err) { return cb(err); }
+        cb(null, newUser);
       });
-    }
-  )
-);
 
-module.exports = passport;
+    });
+  })
+)
+      // User.create(newUser, function(err, user) {
+      //   if (err) {return done(err, user);}
+      //   return done(err, user)
 
+      // });
+    

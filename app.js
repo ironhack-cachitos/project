@@ -14,51 +14,9 @@ const flash = require("connect-flash");
 const User = require("./models/User");
 mongoose.connect("mongodb://localhost/ih-cachitos");
 
-const passport = require("./passport/config");
+const passport = require("passport");
+
 const app = express();
-
-app.use(
-  session({
-    secret: "our-passport-local-strategy-app",
-    resave: true,
-    saveUninitialized: true
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session());
-passport.serializeUser((user, cb) => {
-  cb(null, user._id);
-});
-
-passport.deserializeUser((id, cb) => {
-  User.findOne({ _id: id }, (err, user) => {
-    if (err) {
-      return cb(err);
-    }
-    cb(null, user);
-  });
-});
-app.use(flash());
-passport.use(
-  new LocalStrategy(
-    { passReqToCallback: true },
-    (req, username, password, next) => {
-      User.findOne({ username }, (err, user) => {
-        if (err) {
-          return next(err);
-        }
-        if (!user) {
-          return next(null, false, { message: "Incorrect username" });
-        }
-        if (!bcrypt.compareSync(password, user.password)) {
-          return next(null, false, { message: "Incorrect password" });
-        }
-
-        return next(null, user);
-      });
-    }
-  )
-);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -74,13 +32,33 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(layouts);
 
+app.use(
+  session({
+    secret: "our-passport-local-strategy-app",
+    resave: true,
+    saveUninitialized: true
+  })
+);
+
+app.use(flash());
+require("./passport/serializers");
+require("./passport/local");
+require("./passport/github");
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use( (req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
+
 const index = require("./routes/index");
 const auth = require("./routes/auth");
 const main = require("./routes/main");
-const authRoutes = require("./routes/auth-routes");
+//const authRoutes = require("./routes/auth-routes");
 
 app.use("/", index);
-app.use("/", authRoutes);
+//app.use("/", authRoutes);
 app.use("/auth", auth);
 app.use("/main", main);
 
