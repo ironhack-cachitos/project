@@ -6,82 +6,23 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 const ensureLogin = require("connect-ensure-login");
 const User = require("../models/User");
+const AuthController = require('../controllers/AuthController');
 
-router.get("/login", (req, res, next) => {
-  res.render("auth/login", { message: req.flash("error") });
-});
+router.get("/login", AuthController.loginGet);
+router.post("/login", AuthController.loginPost);
+router.get("/github", AuthController.gitHubGet);
+router.get("/github/callback", AuthController.gitHubGetCallback);
+router.get("/logout", AuthController.logout);
 
-router.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/main",
-    failureRedirect: "/auth/login",
-    failureFlash: true,
-    passReqToCallback: true
-  })
-);
+//pagina privada
+// // router.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
+// //   res.render("auth/main", { user: req.user });
+// // });
 
-router.get(
-  "/github",
-  passport.authenticate("github", { scope: ["user:email"] })
-);
+router.get("/signup", AuthController.signupGet);
+router.post("/signup", AuthController.signupPost)
 
-router.get(
-  "/github/callback",
-  passport.authenticate("github", { failureRedirect: "/auth/login" }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect("/main");
-  }
-);
-router.get("/logout", function(req, res) {
-  req.logout();
-  res.redirect("/auth/login");
-});
-
-// router.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
-//   res.render("auth/main", { user: req.user });
-// });
-
-router.get("/signup", (req, res, next) => {
-  res.render("auth/signup", {});
-});
-
-router.post("/signup", (req, res, next) => {
-  const username = req.body.username;
-  const password = req.body.password;
-
-  if (username === "" || password === "") {
-    res.render("auth/signup", {
-      message: "Indicate username and password"
-    });
-    return;
-  }
-
-  User.findOne({ username }, "username", (err, user) => {
-    if (user !== null) {
-      res.render("auth/signup", { message: "The username already exists" });
-      return;
-    }
-
-    const salt = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(password, salt);
-
-    const newUser = new User({
-      username,
-      password: hashPass
-    });
-
-    newUser.save(err => {
-      if (err) {
-        res.render("auth/signup", { message: "Something went wrong" });
-      } else {
-        res.redirect("/");
-      }
-    });
-  });
-});
-
+//pagina privada
 // router.get("/private", ensureLogin.ensureLoggedIn(), (req, res) => {
 //   res.render("passport/private", { user: req.user });
 // });
