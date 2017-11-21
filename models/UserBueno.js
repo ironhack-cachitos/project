@@ -3,7 +3,7 @@ const findOrCreate = require("mongoose-findorcreate");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-username: { type: String, unique:true, required: [true, 'Necesitas un username'] },
+  username: { type: String, unique:true, required: [true, 'Necesitas un username'] },
   email: { type: String },
   password: { type: String, select: false },
   pile: { type: Schema.Types.ObjectId, ref: 'Pile'},

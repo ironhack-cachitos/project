@@ -1,5 +1,7 @@
 const passport = require("passport");
 const GitHubStrategy = require("passport-github2").Strategy;
+const findOrCreate = require("mongoose-findorcreate"); 
+
 require("dotenv").config();
 
 passport.serializeUser(function(user, cb) {
@@ -33,7 +35,7 @@ passport.use(
       }
       if (profile._json.email) {
         var email = profile._json.email;
-      }
+      } 
       if (profile._json.avatar_url) {
         var avatar = profile._json.avatar_url;
       }
@@ -46,9 +48,13 @@ passport.use(
         email,
         avatar
       });
+      //console.log(typeof newUser);
+     // console.log(typeof newUser.token);
 
-      User.findOrCreate(newUser, function(err, user) {
-        return done(err, user);
+      User.create(newUser, function(err, user) {
+        if (err) {return done(err, user);}
+        return done(err, user)
+
       });
     }
   )
