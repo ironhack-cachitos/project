@@ -8,10 +8,12 @@ const layouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
 const findOrCreate = require("mongoose-findorcreate");
 const session = require("express-session");
+const MongoStore = require('connect-mongo')(session);
 const bcrypt = require("bcrypt");
 const LocalStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
 const User = require("./models/User");
+
 mongoose.connect("mongodb://localhost/ih-cachitos");
 
 const passport = require("passport");
@@ -22,8 +24,6 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.set("layout", "layout");
-// default value for title local
-app.locals.title = "Express - Generated with IronGenerator";
 
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -34,9 +34,12 @@ app.use(layouts);
 
 app.use(
   session({
-    secret: "our-passport-local-strategy-app",
+    secret: "cachitos",
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection
+    })
   })
 );
 
@@ -49,6 +52,7 @@ app.use(passport.session());
 
 app.use( (req, res, next) => {
   res.locals.user = req.user;
+  res.locals.title = 'Cachitos de Ironhack';
   next();
 });
 
