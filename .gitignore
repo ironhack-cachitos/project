@@ -35,8 +35,5 @@ docs
 # Exclude sketch files
 *.sketch
 
-# Exclude linter
-.eslintrc
-
 # Exclude OSX files
 .DS_Store

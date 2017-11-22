@@ -55,6 +55,7 @@ app.use( (req, res, next) => {
 const index = require("./routes/index");
 const auth = require("./routes/auth");
 const main = require("./routes/main");
+const userRoutes = require("./routes/user");
 
 app.use("/", index);
 app.use("/", auth);
