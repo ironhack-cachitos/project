@@ -8,7 +8,7 @@ const chunkSchema = new Schema({
   description: { type: String },
   content: { type: String },
   language: { type: String, enum: LANG, required: true },
-  likes: { type: Number, default: 0 },
+  likes: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   tags: [String]
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
