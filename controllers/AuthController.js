@@ -12,21 +12,22 @@ module.exports = {
     res.render("auth/login", { message: req.flash("error") });
   },
   loginPost: passport.authenticate("local", {
-    successRedirect: "/home",
-    failureRedirect: "/auth/login",
+    //successReturnToOrRedirect: "/main",
+    successRedirect: "/main",
+    failureRedirect: "/login",
     failureFlash: true,
     passReqToCallback: true
   }),
   gitHubGet: passport.authenticate("github", {
     scope: ["user:email"]
   }),
-  gitHubGetCallback: passport.authenticate("github", { 
-      successRedirect: '/main',
-      failureRedirect: "/auth/login" 
+  gitHubGetCallback: passport.authenticate("github", {
+      successRedirect: "/main",
+      failureRedirect: "/login"
     }),
   logout: (req, res) => {
     req.logout();
-    res.redirect("/auth/login");
+    res.redirect("/");
   },
   signupGet: (req, res, next) => {
     res.render("auth/signup", {});

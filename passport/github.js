@@ -40,7 +40,7 @@ passport.use(
       }
       if (profile._json.email) {
         var email = profile._json.email;
-      } 
+      }
       if (profile._json.avatar_url) {
         var avatar = profile._json.avatar_url;
       }
@@ -53,7 +53,7 @@ passport.use(
         email,
         avatar
       });
-    
+
        newUser.save((err) => {
         if (err) { return cb(err); }
         cb(null, newUser);
@@ -61,10 +61,9 @@ passport.use(
 
     });
   })
-)
+);
       // User.create(newUser, function(err, user) {
       //   if (err) {return done(err, user);}
       //   return done(err, user)
 
       // });
-    

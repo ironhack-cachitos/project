@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const layouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
-const findOrCreate = require("mongoose-findorcreate"); 
+const findOrCreate = require("mongoose-findorcreate");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 const LocalStrategy = require("passport-local").Strategy;
@@ -55,12 +55,10 @@ app.use( (req, res, next) => {
 const index = require("./routes/index");
 const auth = require("./routes/auth");
 const main = require("./routes/main");
-//const authRoutes = require("./routes/auth-routes");
 
 app.use("/", index);
-//app.use("/", authRoutes);
-app.use("/auth", auth);
-app.use("/main", main);
+app.use("/", auth);
+app.use("/main", index);
 
 
 // catch 404 and forward to error handler

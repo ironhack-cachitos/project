@@ -1,23 +1,9 @@
-// const express = require('express');
-// const router  = express.Router();
+const express = require('express');
+const router  = express.Router();
+const indexRouter = require('../controllers/IndexController');
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
-// /* GET home page. */
-// router.get('/', (req, res, next) => {
-//   res.render('index');
-// });
-
-// module.exports = router;
-
-
-var express = require('express');
-var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', {
-    title: 'Express',
-    user: req.user
-  });
-});
+router.get('/', ensureLoggedOut('/main'), indexRouter.get);
+router.get('/main', ensureLoggedIn('/'), indexRouter.main);
 
 module.exports = router;
