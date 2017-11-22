@@ -20,7 +20,9 @@ module.exports = {
           username: req.body.user,
           password: req.body.password,
           email: req.body.email,
-          avatar: req.body.avatar
+          //avatar: req.body.avatar,
+          avatar: `../uploads/${req.file.filename}`,
+          avatar_name: req.file.originalname
         }
       })
       .then(() => res.redirect("/main"))

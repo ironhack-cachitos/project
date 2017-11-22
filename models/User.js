@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const findOrCreate = require("mongoose-findorcreate");
 const Schema = mongoose.Schema;
+const multer = require("multer");
+const upload = multer({ dest: "./public/uploads/user-pictures/" });
 
 const userSchema = new Schema({
 username: { type: String, unique:true, required: [true, 'Necesitas un username'] },
@@ -8,6 +10,7 @@ username: { type: String, unique:true, required: [true, 'Necesitas un username']
   password: { type: String },
   pile: { type: Schema.Types.ObjectId, ref: 'Pile'},
   avatar: { type: String, default: '/uploads/user-pictures/blank.png'},
+  avatar_name: {type: String},
   githubId: { type: String },
   token: { type: String }
 }, {
