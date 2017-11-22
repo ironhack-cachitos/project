@@ -1,0 +1,81 @@
+#banner {
+  background-color: #F0FF00;
+  height: 50vh;
+  padding-top: 2rem;
+}
+#banner h1,
+.huge {
+  font-size: 6rem;
+}
+.top-bar {
+  background-color: #323232;
+  color: #FFFFFF;
+}
+.top-bar ul {
+  background-color: #323232;
+}
+.reveal-overlay {
+  background-color: rgba(255, 255, 255, .75)
+}
+.light-panel {
+  background-color: #FFFFFF;
+  border-radius: 3px;
+  padding: 2rem;
+}
+.user-pile {
+  background-color: #4A4A4A;
+  size: 33vw;
+  max-width: 500px;
+  min-width: 320px;
+
+  .chunk {
+    position: relative;
+    background: #5A5A5A;
+    padding: 1rem;
+    border-bottom: 3px solid #4A4A4A;
+    transition: background-color, .5s;
+
+    .chunk-controls {
+      display: none;
+      position: absolute;
+      top: 25%;
+      right: .5rem;
+    }
+    &:hover {
+      .chunk-controls {
+        display: block;
+      }
+    }
+    &.copied {
+      background-color: lighten(#5A5A5A, 10%);
+      &:after {
+        content: 'Copied!';
+        color: #ffffff;
+        font-size: 1.25rem;
+        font-weight: Bold;
+        position: absolute;
+        top: 65%;
+        right: 3rem;
+      }
+    }
+  }
+
+  .chunk-content {
+    display: none;
+  }
+
+  .chunk-name {
+    color: #FFFFFF;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  .chunk-description {
+    color: #C2C2C2;
+    font-size: 80%;
+  }
+
+}
+.main-piles {
+  background-color: #F0FF00;
+}
