@@ -9,7 +9,6 @@ const User = require("../models/User");
 const AuthController = require('../controllers/AuthController');
 
 router.get("/login", ensureLoggedOut('/'), AuthController.loginGet);
-router.get("/login/modal", ensureLoggedOut('/'), AuthController.loginGetModal);
 router.post("/login", ensureLoggedOut('/'), AuthController.loginPost);
 router.get("/auth/github", AuthController.gitHubGet);
 router.get("/auth/github/callback", AuthController.gitHubGetCallback);

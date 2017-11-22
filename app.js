@@ -59,10 +59,12 @@ app.use( (req, res, next) => {
 const index = require("./routes/index");
 const auth = require("./routes/auth");
 const main = require("./routes/main");
+const chunks = require("./routes/chunks");
 
 app.use("/", index);
 app.use("/", auth);
 app.use("/main", index);
+app.use("/chunk", chunks);
 
 
 // catch 404 and forward to error handler

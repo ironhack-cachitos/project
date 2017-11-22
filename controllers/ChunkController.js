@@ -2,11 +2,12 @@ const User = require('../models/User');
 const Chunk = require('../models/Chunk');
 const Pile = require('../models/Pile');
 
-module.export = {
-  getNew : (req, res, next) => {
-    res.render('chunk/new');
+module.exports = {
+  getNew: (req, res, next) => {
+    let layout = req.query.layout ? req.query.layout : 'layout';
+    res.render('chunk/new', {layout: layout});
   },
-  postNew : (req, res, next) => {
+  postNew: (req, res, next) => {
   //Aqui tendremos que buscar la manera de escapar el código
   //De momento lo pegamos tal cual
   const codeContent = req.body.content;
@@ -37,23 +38,25 @@ module.export = {
       next(err);
     });
   },
-  getDetail : (req, res, next) => {
-    const chunkId = req.params.id;
+  getDetail: (req, res, next) => {
+    let layout = req.query.layout ? req.query.layout : 'layout';
+    const chunkId = req.query.id;
     Chunk.findById(chunkId)
       .then(chunk => {
-        res.render('chunk/detail', {chunk});
+        res.render('chunk/detail', {chunk, layout: layout});
       })
       .catch(err => next(err));
   },
-  getEdit : (req, res, next) => {
-    const chunkId = req.params.id;
+  getEdit: (req, res, next) => {
+    let layout = req.query.layout ? req.query.layout : 'layout';
+    const chunkId = req.query.id;
     Chunk.findById(chunkId)
       .then(chunk => {
-        return res.render('chunk/edit', {chunk});
+        return res.render('chunk/edit', {chunk, layout: layout});
       })
       .catch(err => next(err));
   },
-  postEdit : (req, res, next) => {
+  postEdit: (req, res, next) => {
     const chunkId = req.params.id;
     //Aqui tendremos que buscar la manera de escapar el código
     //De momento lo pegamos tal cual
@@ -101,21 +104,26 @@ module.export = {
       })
       .catch(err => next(err));
   },
-  getDelete : (req, res, next) => {
+  getDelete: (req, res, next) => {
+    let layout = req.query.layout ? req.query.layout : 'layout';
     //Aqui simplemente pintamos una vista de confirmación,
     //pero nos traemos el objeto para pintar el nombre
-    Chunk.findById(req.params.id)
+    // Falta por chequear que el user es el dueño del chunk
+    // antes de dejarle borrarlo
+    Chunk.findById(req.query.id)
     .then((chunk) => {
-      return res.render('chunk/delete-confirmation', {chunk});
+      return res.render('chunk/delete-confirmation', {chunk, layout: layout});
     })
     .catch(err => next(err));
   },
-  postDelete : (req, res, next) => {
+  postDelete: (req, res, next) => {
+    //Falta por chequear que el user es el dueño del chunk
+    // antes de dejarle borrarlo
     Chunk.findByIdAndRemove(req.params.id)
     .then(() => { return res.redirect('/main');})
     .catch(err => next(err));
   },
-  postAdd : (req, res, next) => {
+  postAdd: (req, res, next) => {
     const userId = req.user._id;
     const pileId = req.user.pile;
     const chunkId = req.params.id;

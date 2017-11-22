@@ -5,49 +5,58 @@ function copyToClipboard(element) {
   document.execCommand("copy");
   $temp.remove();
 }
+// Variables globales que estaría bien que estuvieran
+// en otro fichero o quizá dentro del scope de init,
+// pero asi puedo cambiarlas para probar rápidamente
+const loginModalUrl = '/login?layout=modals';
+const editModalUrl = '/edit?layout=modals';
+const detailModalUrl = '/detail?layout=modals';
+
 
 function init(){
   // Inicializamos Foundation
+  // Necesario para varios componentes js que se usan
+  // en el front
   $(document).foundation();
 
-  // Modales
+  // Ventanas modales
   const $loginModal = $('#login-modal');
   const $chunkModal = $('#chunk-modal');
 
   // Abre el login en su modal
   $('#login-button').on('click', () => {
-    $.ajax({url: '/login/modal'}).
-    then( resp =>{
+    $.ajax({url: loginModalUrl})
+    .then( resp =>{
       $loginModal.html(resp).foundation('open');
     })
-    .catch(e => console.log(err));
+    .catch(err => console.log(err));
   });
-
-
-  // Inicializamos el highlightjs
-  $('pre code').each(function(i, block) {
-    hljs.highlightBlock(block);
-  });
-
 
   // Abre los modales de edición
 
   $('.chunk-edit').on('click', () => {
     let target = $(event.target).attr('data-edit-target');
-    $.ajax(`chunk-edit.html?${target}`)
-      .done((resp) => {
+    $.ajax({url: editModalUrl + '&id=' + target})
+      .then(resp => {
         $chunkModal.html(resp).foundation('open');
-      });
+      })
+      .catch(err => console.log(err));
   });
 
   // Abre los modales de vistas
 
   $('.chunk-view').on('click', () => {
     let target = $(event.target).attr('data-view-target');
-    $.ajax(`chunk-view.html?${target}`)
-      .done((resp) => {
+    $.ajax({url: detailModalUrl + '&id=' + target})
+      .then(resp => {
         $chunkModal.html(resp).foundation('open');
-      });
+      })
+      .catch(err => console.log(err));
+  });
+
+  // Inicializamos el highlightjs
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
   });
 
   //Inicializa los botones de copia
