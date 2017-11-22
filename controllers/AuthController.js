@@ -11,6 +11,9 @@ module.exports = {
   loginGet: (req, res, next) => {
     res.render("auth/login", { message: req.flash("error") });
   },
+  loginGetModal: (req, res, next) => {
+    res.render("auth/login", { layout: 'modals', message: req.flash("error") });
+  },
   loginPost: passport.authenticate("local", {
     //successReturnToOrRedirect: "/main",
     successRedirect: "/main",

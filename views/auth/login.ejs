@@ -1,23 +1,27 @@
-<form action="login" method="POST">
-    <div>
-        <label for="username">USUARIO:</label>
-        <input type="text" name="username">
-    </div>
-    <div>
-        <label for="password">CONTRASEÑA:</label>
-        <input type="password" name="password">
-    </div>
-    <% if (typeof message != "undefined") { %>
-        <div class="error-message">
-            <%= message %>
+<form action="/login" method="post" class="alt-form">
+  <div class="grid-container">
+    <div class="grid-x align-center align-middle">
+      <div class="cell">
+        <h3>Login</h3>
+        <div>
+          <label><span class="show-for-sr">Username</span>
+            <input type="text" name="username" placeholder="Username">
+          </label>
+        </div>
+        <div>
+          <label><span class="show-for-sr">Password</span>
+            <input type="password" name="password" placeholder="Password">
+          </label>
+        </div>
+        <div>
+          <button class="secondary button" type="submit">Login</button>
+        </div>
+        <% if (typeof message != "undefined") { %>
+        <div data-abide-error class="alert callout" style="display: none;">
+          <p><%= message %></p>
         </div>
         <% } %>
-            <div>
-                <input type="submit" value="Log In" href="/auth/login">
-            </div>
-
-            <a href="/auth/github" class="btn btn-lg btn-primary" role="button">
-                Login with GitHub
-            </a>
+      </div>
+    </div>
+  </div>
 </form>
-<p><a href="/signup">Sign UP</a></p>
