@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Static Views Index</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/foundation.min.css">
+  <link rel="stylesheet" href="/css/style.min.css">
+  <script src="/js/jquery.js"></script>
+  <script src="/js/what-input.js"></script>
+  <script src="/js/foundation.min.js"></script>
+  <script src="/js/main.js"></script>
+</head>
+
+<body>
+  <!-- top-bar (index only) -->
+  <div class="top-bar">
+    <div class="top-bar-right">
+      <ul class="menu">
+        <li>
+          <button type="button" id="login-button" class="secondary button">Login</button>
+        </li>
+        <li class="menu-text">or</li>
+        <li>
+          <a href="/auth/github" class="button">Login with github</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+<!-- Banner -->
+  <section id="banner">
+    <div class="grid-container">
+      <div class="grid-x">
+        <div class="cell medium-6">
+          <h1>{cachitos}</h1>
+          <p class="lead">Lorem ipsum</p>
+        </div>
+        <div class="cell medium-2">
+          <div class="light-panel">
+            <form id="signup-form" action="/auth/signup" method="post">
+              <h3>Sign Up!</h3>
+              <p>And start saving your code cachitos right away</p>
+              <div>
+                <label><span class="show-for-sr">Username</span>
+                  <input type="text" name="username" placeholder="Username">
+                </label>
+              </div>
+              <div>
+                <label><span class="show-for-sr">Password</span>
+                  <input type="password" name="password" placeholder="Password">
+                </label>
+              </div>
+              <div>
+                <label><span class="show-for-sr">Email</span>
+                  <input type="email" name="email" placeholder="email@domain.com">
+              </div>
+              <div>
+                <button class="button" type="submit">Signup</button>
+              </div>
+              <div data-abide-error class="alert callout" style="display: none;">
+                <p>There are some errors in your form.</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Modal de login -->
+  <div class="tiny reveal" id="login-modal" data-reveal data-animation-in="slide-in-up" data-animation-out="slide-out-down"></div>
+
+</body>
+
+</html>

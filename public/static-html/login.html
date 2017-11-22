@@ -1,0 +1,28 @@
+<form action="/auth/login" method="post" class="alt-form">
+  <div class="grid-container">
+    <div class="grid-x align-center align-middle">
+      <div class="cell">
+        <h3>Login</h3>
+        <div>
+          <label><span class="show-for-sr">Username</span>
+            <input type="text" name="username" placeholder="Username">
+          </label>
+        </div>
+        <div>
+          <label><span class="show-for-sr">Password</span>
+            <input type="password" name="password" placeholder="Password">
+          </label>
+        </div>
+        <div>
+          <button class="secondary button" type="submit">Login</button>
+        </div>
+        <div data-abide-error class="alert callout" style="display: none;">
+          <p>There are some errors in your form.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<button class="close-button" data-close aria-label="Close modal" type="button">
+  <span aria-hidden="true">&times;</span>
+</button>
