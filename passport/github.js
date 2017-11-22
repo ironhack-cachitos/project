@@ -1,27 +1,34 @@
 const passport = require("passport");
 const GitHubStrategy = require("passport-github2").Strategy;
+const findOrCreate = require("mongoose-findorcreate");
+const User = require("../models/User");
+
 require("dotenv").config();
 
-passport.serializeUser(function(user, cb) {
-  cb(null, user);
-});
-passport.deserializeUser(function(obj, cb) {
-  cb(null, obj);
-});
+// passport.serializeUser(function(user, cb) {
+//   cb(null, user);
+// });
+// passport.deserializeUser(function(obj, cb) {
+//   cb(null, obj);
+// });
 
 const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 
 // Initialize GitHubStrategy
-const User = require("../models/user");
+
 passport.use(
   new GitHubStrategy(
     {
       clientID: GITHUB_CLIENT_ID,
       clientSecret: GITHUB_CLIENT_SECRET,
-      callbackURL: "http://127.0.0.1:3000/auth/github/callback"
+      callbackURL: "http://localhost:3000/auth/github/callback"
     },
-    function(accessToken, refreshToken, profile, done) {
+     (accessToken, refreshToken, profile, cb) => {
+    User.findOne({ githubId: profile.id }, (err, user) => {
+      if (err) { return cb(err); }
+      if (user) { return cb(null, user); }
+    //function(accessToken, refreshToken, profile, done) {
       if (profile._json.id) {
         var githubId = profile._json.id;
       }
@@ -47,18 +54,16 @@ passport.use(
         avatar
       });
 
-      User.findOne({ githubId: newUser.githubId })
-        .exec()
-        .then(user => {
-          if (!user) return new User(newUser).save();
-          return User.findByIdAndUpdate(user._id, newUser, {
-            new: true
-          }).exec();
-        })
-        .then(user => next(null, user))
-        .catch(e => next(e));
-    }
-  )
-);
+       newUser.save((err) => {
+        if (err) { return cb(err); }
+        cb(null, newUser);
+      });
 
-module.exports = passport;
+    });
+  })
+);
+      // User.create(newUser, function(err, user) {
+      //   if (err) {return done(err, user);}
+      //   return done(err, user)
+
+      // });

@@ -3,9 +3,9 @@ const findOrCreate = require("mongoose-findorcreate");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: { type: String, unique:true, required: [true, 'Necesitas un username'] },
-  email: { type: String, required: [true, 'Necesitas un email'] },
-  password: { type: String, select: false },
+username: { type: String, unique:true, required: [true, 'Necesitas un username'] },
+  email: { type: String },
+  password: { type: String },
   pile: { type: Schema.Types.ObjectId, ref: 'Pile'},
   avatar: { type: String, default: '/uploads/user-pictures/blank.png'},
   githubId: { type: String },

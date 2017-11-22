@@ -1,1 +1,23 @@
-<a href="/auth/github">Login with GitHub</a>
+<form action="login" method="POST">
+    <div>
+        <label for="username">USUARIO:</label>
+        <input type="text" name="username">
+    </div>
+    <div>
+        <label for="password">CONTRASEÑA:</label>
+        <input type="password" name="password">
+    </div>
+    <% if (typeof message != "undefined") { %>
+        <div class="error-message">
+            <%= message %>
+        </div>
+        <% } %>
+            <div>
+                <input type="submit" value="Log In" href="/auth/login">
+            </div>
+
+            <a href="/auth/github" class="btn btn-lg btn-primary" role="button">
+                Login with GitHub
+            </a>
+</form>
+<p><a href="/signup">Sign UP</a></p>
