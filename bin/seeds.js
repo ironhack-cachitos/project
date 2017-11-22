@@ -27,6 +27,7 @@ const chunk1 = new Chunk({
   description: 'config del linter js de atom',
   content: '{\n  \"parserOptions\": {\n    \"ecmaVersion\": 6,\n      \"sourceType\": \"module\",\n    },\n    \"rules\": {\n        \"semi\": 2\n    }\n}',
   language: 'JSON',
+  likes: [],
   tags: ['JSON', 'linter', 'atom']
 });
 
@@ -36,6 +37,7 @@ const chunk2 = new Chunk({
   description: 'javascript randomizer',
   content: 'Math.floor(Math.random() * array.length',
   language: 'javascript',
+  likes: [],
   tags: ['JS', 'javascript', 'random', 'math']
 });
 
@@ -45,6 +47,7 @@ const chunk3 = new Chunk({
   description: 'Remove and untrack directory from repository',
   content: 'git rm --cached -r mydirectory',
   language: 'Shell',
+  likes: [],
   tags: ['git', 'remove', 'repository']
 });
 
@@ -54,6 +57,7 @@ const chunk4 = new Chunk({
   description: 'Calculate MCD in javascript',
   content: 'const gcd = (a, b) => {\n    return !b ? a : gcd(b, a % b);\n}',
   language: 'javascript',
+  likes: [],
   tags: ['JS','javascript','math']
 });
 
