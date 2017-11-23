@@ -6,8 +6,8 @@ const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
 const User = require("../models/User");
 
 
-
+router.get("/pile", PileController.index);
 router.get("/pile/:id/", PileController.detail);
-//router.get("/pile/:id/type/:language", PileController.lenguage);
+router.get("/pile/:id/type/:language", PileController.lenguage);
 
 module.exports = router;

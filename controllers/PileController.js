@@ -28,19 +28,13 @@ module.exports = {
         }
       );
     });
+  },
+  lenguage: (req, res, next) => {
+    let languageList = ''
+    Pile.find({}).populate("user")
+          .then(languages => {
+            languageList = pile
+            return User.find(Pile.languages,{})
   }
+)},
 };
-
-//   client: (req, res, next) => {
-//     let productsListSelect = ''
-//     Product.find({}).populate('supplier')
-//       .then(products => {
-//         productsListSelect = products
-//         return User.find({})
-//       }).then(users => {
-//         res.render('clients/new', {
-//           productsListSelect,
-//           users
-//         })
-//       })
-// }
