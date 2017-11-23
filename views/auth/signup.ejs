@@ -1,10 +1,26 @@
-<form action="/signup" method="POST" id="form-container">
-    <p>Sign up page</p>
-    <input type="text" placeholder="Username.." name="username"></input>
-    <input type="password" placeholder="Password.." name="password"></input>
-    <input type="submit" value="Create account"></input>
-    <p class="account-message">
-        Do you already have an account?
-        <a href="/login">Login</a>
-    </p>
+<form id="signup-form" action="/signup" method="post">
+  <h3>Sign Up!</h3>
+  <p>And start saving your code cachitos right away</p>
+  <div>
+    <label><span class="show-for-sr">Username</span>
+      <input type="text" name="username" placeholder="Username">
+    </label>
+  </div>
+  <div>
+    <label><span class="show-for-sr">Password</span>
+      <input type="password" name="password" placeholder="Password">
+    </label>
+  </div>
+  <div>
+    <label><span class="show-for-sr">Email</span>
+      <input type="email" name="email" placeholder="email@domain.com">
+  </div>
+  <div>
+    <button class="button" type="submit">Create account</button>
+  </div>
+  <% if (typeof message != "undefined") { %>
+  <div data-abide-error class="alert callout" style="display: none;">
+    <p><%= message %></p>
+  </div>
+  <% } %>
 </form>

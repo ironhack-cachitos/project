@@ -1,6 +1,33 @@
-<% if (user) { %>
-    <div>
-        <a href="/">Index</a>
-        <a href="/logout">Logout</a>
-    </div>
-    <% } %>
+<div class="grid-container full">
+  <div class="grid-x grid-margin-x align-right align-stretch">
+    <main class="user-pile cell small-order-1">
+      <div class="user-control">
+        <% if (user) { %>
+          <img src="<%= user.avatar %>" alt="Avatar of <%= user.username %>" width="40" height="40">
+          <p><a href="/user/edit?id=<%= user.id %>" data-ajax-open="true"><%= user.username %></a></p>
+          <a href="/logout">Logout</a>
+        <% } %>
+      </div>
+
+      <div class="chunk-list">
+        <ul>
+          <li>
+            <a href="/chunk/detail?id=5a162bb5a04c2a2a07b3030f" data-ajax-open="true">detalle</a>
+          </li>
+          <li>
+            <a href="/chunk/detail?id=5a12f8c493c76b1492eb8d36" data-ajax-open="true">detalle</a>
+          </li>
+          <li>
+            <a href="/chunk/detail?id=5a162dd086c5e32a35b957e8" data-ajax-open="true">detalle</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="user-tools">
+        <a href="/chunk/new" class="large button" data-ajax-open="true">New cachito</a>
+      </div>
+    </main>
+  </div>
+</div>
+
+<% include partials/chunk-modal.html %>

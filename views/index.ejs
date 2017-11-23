@@ -1,17 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <% include auth/login.ejs %>
-    
-</body>
-</html>
+<div class="top-bar">
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li>
+        <button type="button" id="login-button" class="secondary button">Login</button>
+      </li>
+      <li class="menu-text">or</li>
+      <li>
+        <a href="/auth/github" class="button">Login with github</a>
+      </li>
+    </ul>
+  </div>
+</div>
 
+<section id="banner">
+  <div class="grid-container">
+    <div class="grid-x">
+      <div class="cell medium-5">
+        <h1>{cachitos}</h1>
+        <p class="lead">Lorem ipsum</p>
+      </div>
+      <div class="cell medium-3">
+        <div class="light-panel">
+          <% include auth/signup.ejs %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-
-
+<% include partials/login-modal.html %>

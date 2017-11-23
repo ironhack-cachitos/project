@@ -1,0 +1,38 @@
+<div class="grid-container-fluid">
+  <div class="grid-x align-center align-middle">
+    <div class="cell medium-4">
+      <h1>Cachito name</h1>
+      <p class="lead">description</p>
+
+      <div class="chunk-code">
+        <pre>
+          <code class="javascript">
+  const mongoose = require("mongoose");
+  const Schema = mongoose.Schema;
+
+  const userSchema = new Schema({
+    username: String,
+    password: String
+  }, {
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
+  });
+
+  const User = mongoose.model("User", userSchema);
+
+  module.exports = User;
+          </code>
+        </pre>
+      </div>
+
+      <p class="chunk-lang">Javascript</p>
+    </div>
+  </div>
+</div>
+<button class="close-button" data-close aria-label="Close modal" type="button">
+  <span aria-hidden="true">&times;</span>
+</button>
+<script>
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+</script>

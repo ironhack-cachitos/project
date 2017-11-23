@@ -1,4 +1,4 @@
-<form action="/login" method="post" class="alt-form">
+<form action="/auth/login" method="post" class="alt-form">
   <div class="grid-container">
     <div class="grid-x align-center align-middle">
       <div class="cell">
@@ -16,12 +16,13 @@
         <div>
           <button class="secondary button" type="submit">Login</button>
         </div>
-        <% if (typeof message != "undefined") { %>
         <div data-abide-error class="alert callout" style="display: none;">
-          <p><%= message %></p>
+          <p>There are some errors in your form.</p>
         </div>
-        <% } %>
       </div>
     </div>
   </div>
 </form>
+<button class="close-button" data-close aria-label="Close modal" type="button">
+  <span aria-hidden="true">&times;</span>
+</button>
