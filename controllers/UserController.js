@@ -17,27 +17,39 @@ module.exports = {
     const userId = req.query.id;
     User.findById(userId)
       .then(selectedUser => {
-        res.render("user/edit", {selectedUser, layout: layout})
+        res.render("user/edit", { selectedUser, layout: layout });
       })
       .catch(err => next(err));
   },
   findOnePost: (req, res, next) => {
-    console.log(req.file)
+    console.log(req.file);
     User.findByIdAndUpdate(req.params.id, {
-        $set: {
-          username: req.body.username,
-          //password: req.body.password,
-          email: req.body.email,
-          avatar: `/uploads/user-picture/${req.file.filename}`
-        }
-      })
+      $set: {
+        username: req.body.username,
+        //password: req.body.password,
+        email: req.body.email,
+        avatar: `/uploads/user-picture/${req.file.filename}`
+      }
+    })
       .then(() => res.redirect("/main"))
       .catch(err => next(err));
   },
-  delete: (req, res) => {
-    const userID = req.params.id;
-    User.findByIdAndRemove(userID)
-      .then(() => res.redirect("/"))
+  deleteGet: (req, res, next) => {
+    let layout = req.query.layout ? req.query.layout : "layout";
+    User.findById(req.query.id)
+      .then(user => {
+        return res.render("user/delete-confirm", {
+          user,
+          layout: layout
+        });
+      })
+      .catch(err => next(err));
+  },
+  deletePost: (req, res, next) => {
+    User.findByIdAndRemove(req.params.id)
+    .then(() => {
+        return res.redirect("/main");
+      })
       .catch(err => next(err));
   }
 };

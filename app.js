@@ -8,7 +8,7 @@ const layouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
 const findOrCreate = require("mongoose-findorcreate");
 const session = require("express-session");
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require("connect-mongo")(session);
 const bcrypt = require("bcrypt");
 const LocalStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
@@ -16,7 +16,7 @@ const User = require("./models/User");
 const multer = require("multer");
 
 const databaseURL = "mongodb://localhost/ih-cachitos";
-mongoose.connect(databaseURL, {useMongoClient: true});
+mongoose.connect(databaseURL, { useMongoClient: true });
 
 const passport = require("passport");
 
@@ -52,9 +52,9 @@ require("./passport/github");
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use( (req, res, next) => {
+app.use((req, res, next) => {
   res.locals.user = req.user;
-  res.locals.title = 'Cachitos de Ironhack';
+  res.locals.title = "Cachitos de Ironhack";
   next();
 });
 
@@ -70,7 +70,6 @@ app.use("/", auth);
 app.use("/pile", pile);
 app.use("/chunk", chunks);
 app.use("/user", userRoutes);
-
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

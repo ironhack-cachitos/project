@@ -1,6 +1,19 @@
 <% if (user) { %>
     <div>
-        <a href="/main"></a>
-        <a href="/logout">Logout</a>
+        <form action="/user/delete/<%= user._id %>" method="post"></form>
+        <h1>Confirma el borrado de la cuenta</h1>
+        <div>
+            <button type="submit" name="action" value="Submit" href="/delete/:id" >SI</button>
+        </div>
+
+       
+<br>
+        <a href="/main">
+
+            <font color="#cc0000">
+                <strong>NO</strong>
+            </font>
+</a>
+            </form>
     </div>
     <% } %>

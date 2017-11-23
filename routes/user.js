@@ -9,6 +9,8 @@ const upload = multer({ dest: "../uploads/user-pictures" });
 router.get("/", ensureLoggedIn("/"), userRouter.findGet);
 router.get("/edit", ensureLoggedIn("/"), userRouter.findOneEdit);
 router.post("/edit/:id", ensureLoggedIn("/"), upload.single('avatar'), userRouter.findOnePost);
-router.post("/delete", ensureLoggedIn("/"), userRouter.delete);
+//funcionalidad futura
+// router.get("/delete", ensureLoggedIn("/"), userRouter.deleteGet);
+// router.post("/delete/:id", ensureLoggedIn("/"), userRouter.deletePost);
 
 module.exports = router;
