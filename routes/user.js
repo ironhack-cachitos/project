@@ -3,8 +3,8 @@ const router = express.Router();
 const userRouter = require("../controllers/UserController");
 const { ensureLoggedIn } = require("connect-ensure-login");
 const multer = require("multer");
-//const upload = multer({ dest: process.env.UPLOADS_URL });
-const upload = multer({ dest: "../uploads/user-pictures" });
+const UPLOADS_URL = process.env.UPLOADS_URL;
+const upload = multer({ dest: UPLOADS_URL });
 
 router.get("/", ensureLoggedIn("/"), userRouter.findGet);
 router.get("/edit", ensureLoggedIn("/"), userRouter.findOneEdit);

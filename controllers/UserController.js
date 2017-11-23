@@ -22,13 +22,14 @@ module.exports = {
       .catch(err => next(err));
   },
   findOnePost: (req, res, next) => {
-    console.log(req.file);
+    let avatar = req.file ? `/uploads/user-pictures/${req.file.filename}` : req.body.avatar;
     User.findByIdAndUpdate(req.params.id, {
       $set: {
+        fullname: req.body.fullname,
         username: req.body.username,
-        //password: req.body.password,
         email: req.body.email,
-        avatar: `/uploads/user-picture/${req.file.filename}`
+        githubUrl: req.body.githubUrl,
+        avatar: avatar
       }
     })
       .then(() => res.redirect("/main"))

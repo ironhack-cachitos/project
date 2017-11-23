@@ -1,33 +1,38 @@
-<div>
-    <h1>EDITAR USUARIO</h1>
-    <br>
-    <form action="/user/edit/<%= user._id %>" method="post" enctype="multipart/form-data">
-        <div>
-            <label>Username</label>
+<div class="grid-container-fluid">
+  <div class="grid-x align-center align-middle">
+    <div class="cell medium-6">
+      <h2>Your Profile</h2>
+      <form action="/user/edit/<%= user._id %>" method="post" enctype="multipart/form-data">
+        <fieldset>
+          <label><span>Full name</span>
+            <input type="text" name="fullname" value="<%= user.fullname %>">
+          </label>
+        </fieldset>
+        <fieldset>
+          <label><span>Username</span>
             <input type="text" name="username" value="<%= user.username %>">
+          </label>
+        </fieldset>
+        <fieldset>
+          <label><span>Email</span>
+            <input type="email" name="email" value="<%= user.email %>">
+          </label>
+        </fieldset>
+        <fieldset>
+          <label for="avatar"><span>Picture</span></label>
+          <p class="help-text">Select a file from your computer</p>
+          <label for="avatar" class="secondary button">Upload file</label>
+          <input type="file" id="avatar" name="avatar" class="show-for-sr" value="<%= user.avatar %>">
+        </fieldset>
+        <fieldset>
+          <label><span>Github URL</span>
+            <input type="url" name="githubUrl" value="<%= user.githubUrl %>">
+          </label>
+        </fieldset>
+        <div class="float-right">
+          <button type="submit" class="large button">Save changes</button>
         </div>
-        <div>
-            <label>Email</label>
-            <input type="text" name="email" value="<%= user.email %>">
-        </div>
-        <div>
-            <div>
-                <div>
-                    <span>Selecciona Archivo</span>
-                    <input id="avatar" name="avatar" type="file">
-                </div>
-                <div>
-                    <input type="text">
-                </div>
-            </div>
-        </div>
-        <div>
-            <div>
-                <button type="submit" name="action" value="Submit">ACTUALIZAR
-                    <i>send</i>
-                </button>
-                <br></br>
-            </div>
-        </div>
-    </form>
+      </form>
+    </div>
+  </div>
 </div>

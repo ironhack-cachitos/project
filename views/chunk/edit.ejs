@@ -1,1 +1,47 @@
-<h1>Formulario para editar el cachito</h1>
+<form action="/chunk/new" method="post">
+  <div class="grid-container-fluid">
+    <div class="grid-x align-center align-middle">
+      <div class="cell medium-4">
+        <legend><h3>Edit this 'cachito'</h3></legend>
+        <div>
+          <label><span>Name</span>
+            <input type="text" name="name" value="<%= chunk.name %>" maxlength="40">
+          </label>
+        </div>
+        <div>
+          <label><span>Description</span>
+            <input type="text" name="description" value="<%= chunk.description %>">
+          </label>
+        </div>
+        <div>
+          <label><span>Code</span>
+            <textarea name="content" id="content" cols="30" rows="8"><%= chunk.content %></textarea>
+          </label>
+        </div>
+        <div>
+          <label><span>Tags</span>
+            <input type="text" name="tags" value="<%= chunk.tags %>">
+          </label>
+          <p class="help-text">A list, separated by commas</p>
+        </div>
+        <div>
+          <label><span>Language</span>
+            <select name="language" id="language">
+            <% langs.forEach((lang) => { %>
+              <% if(chunk.language == lang) { %>
+                <option value="<%= lang %>" selected><%= lang %></option>
+              <% } else { %>
+                <option value="<%= lang %>"><%= lang %></option>
+              <% } %>
+            <% }) %>
+            </select>
+          </label>
+        </div>
+        <div>
+          <button class="large button" type="submit">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>

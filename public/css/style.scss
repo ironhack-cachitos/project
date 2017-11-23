@@ -6,6 +6,7 @@ $controls-height: 5.625rem;
 $tool-bar-size: 33vw;
 $tool-bar-max: 380px;
 $tool-bar-min: 320px;
+$secondary-text-color: #666;
 
 #banner {
   background-color: $banner-color;
@@ -59,13 +60,33 @@ $tool-bar-min: 320px;
   justify-content: space-between;
 
   .user-username {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     min-width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    a {
+      color: $tool-bar-color;
+    }
+
   }
 }
 .user-tools {
   bottom: 0;
+}
+.empty-pile-message{
+  color: $secondary-text-color;
+  margin-top: 10rem;
+  padding: 2rem;
+}
+.big-callout{
+  font-size: 2em;
+  font-weight: bold;
+  p {
+    line-height: 1.33;
+  }
 }
 .chunk-list {
   margin-top: $controls-height;
@@ -112,6 +133,7 @@ $tool-bar-min: 320px;
     }
   }
 
+
   .chunk-content {
     //display: none;
   }
@@ -156,4 +178,12 @@ $tool-bar-min: 320px;
     border: 0;
     border-radius: 0;
     border: none;
+}
+label > span {
+  color: $secondary-text-color;
+  display: block;
+  margin-bottom: .33rem;
+}
+pre code {
+  border: none;
 }

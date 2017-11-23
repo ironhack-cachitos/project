@@ -4,28 +4,28 @@
       <div class="cell medium-4">
         <legend><h3>New 'cachito'</h3></legend>
         <div>
-          <label><span class="show-for-sr">Name</span>
+          <label><span>Name</span>
             <input type="text" name="name" placeholder="Name" maxlength="40">
           </label>
         </div>
         <div>
-          <label><span class="show-for-sr">Description</span>
+          <label><span>Description</span>
             <input type="text" name="description" placeholder="Description">
           </label>
         </div>
         <div>
-          <label><span style="display:block;margin-bottom:1rem">Code:</span>
+          <label><span>Code</span>
             <textarea name="content" id="content" cols="30" rows="10"></textarea>
           </label>
         </div>
         <div>
-          <label><span class="show-for-sr">Tags</span>
+          <label><span>Tags</span>
             <input type="text" name="tags" placeholder="tags, tags, tags">
           </label>
           <p class="help-text">A list, separated by commas</p>
         </div>
         <div>
-          <label><span class="show-for-sr">Language</span>
+          <label><span>Language</span>
             <select name="language" id="language">
               <% langs.forEach((lang) => { %>
               <option type="text" value="<%= lang %>"><%= lang %></option>
