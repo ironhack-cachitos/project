@@ -23,29 +23,41 @@ passport.use(
     User.findOne({ githubId: profile.id }, (err, user) => {
       if (err) { return next(err); }
       if (user) { return next(null, user); }
-    //function(accessToken, refreshToken, profile, done) {
-      if (profile._json.id) {
-        var githubId = profile._json.id;
-      }
-      if (profile._json.name) {
-        var name = profile._json.name;
-      }
-      if (profile._json.login) {
-        var username = profile._json.login;
-      }
-      if (profile._json.email) {
-        var email = profile._json.email;
-      }
-      if (profile._json.avatar_url) {
-        var avatar = profile._json.avatar_url;
-      }
+      console.log(profile);
+
+      // if (profile._json.id) {
+      //   let githubId = profile._json.id;
+      // }
+      // if (profile._json.name) {
+      //   let fullname = profile._json.name;
+      // }
+      // if (profile._json.login) {
+      //   let username = profile._json.login;
+      // }
+      // if (profile._json.email) {
+      //   let email = profile._json.email;
+      // }
+      // if (profile._json.avatar_url) {
+      //   let avatar = profile._json.avatar_url;
+      // }
+      // if (profile._json.html_url) {
+      //   let githubUrl = profile._json.html_url;
+      // }
+
+      let githubId = profile._json.id ? profile._json.id : '';
+      let fullname = profile._json.name ? profile._json.name : '';
+      let username = profile._json.login ? profile._json.login : '';
+      let email = profile._json.email ? profile._json.email : '';
+      let avatar = profile._json.avatar_url?  profile._json.avatar_url : '';
+      let githubUrl = profile._json.html_url ? profile._json.html_url : '';
 
       const newUser = new User({
         token: accessToken,
         githubId,
-        name,
+        fullname,
         username,
         email,
+        githubUrl,
         avatar
       });
       const newPile = new Pile({
