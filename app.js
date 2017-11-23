@@ -13,12 +13,10 @@ const bcrypt = require("bcrypt");
 const LocalStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
 const User = require("./models/User");
-<<<<<<< HEAD
 const multer = require("multer");
-=======
 
->>>>>>> abs
-mongoose.connect("mongodb://localhost/ih-cachitos");
+const databaseURL = "mongodb://localhost/ih-cachitos";
+mongoose.connect(databaseURL, {useMongoClient: true});
 
 const passport = require("passport");
 
@@ -63,12 +61,9 @@ app.use( (req, res, next) => {
 const index = require("./routes/index");
 const auth = require("./routes/auth");
 const main = require("./routes/main");
-<<<<<<< HEAD
 const userRoutes = require("./routes/user");
 const pile = require("./routes/pile");
-=======
 const chunks = require("./routes/chunks");
->>>>>>> abs
 
 app.use("/", index);
 app.use("/", auth);
