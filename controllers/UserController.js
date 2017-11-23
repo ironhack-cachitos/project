@@ -1,6 +1,8 @@
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 const User = require("../models/User");
+const multer = require("multer");
+const upload = multer({ dest: process.env.UPLOADS_URL });
 
 module.exports = {
   findGet: (req, res) => {
@@ -21,7 +23,7 @@ module.exports = {
           password: req.body.password,
           email: req.body.email,
           //avatar: req.body.avatar,
-          avatar: `../uploads/${req.file.filename}`,
+          avatar: `/uploads/user-picture/${req.file.filename}`,
           avatar_name: req.file.originalname
         }
       })
