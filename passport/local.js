@@ -56,10 +56,6 @@ passport.use('local-signup', new LocalStrategy(
                     return next(null, user);
                   })
                   .catch(err => { next (err);});
-                // (err) => {
-                //     if (err){ next(err); }
-                //     return next(null, newUser);
-                // });
             }
         });
     });
