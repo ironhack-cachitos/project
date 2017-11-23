@@ -1,2 +1,23 @@
-<h1>Aqui vemos el cachito entero</h1>
-<%= chunk %>
+<div class="grid-container-fluid">
+  <div class="grid-x align-center align-middle">
+    <div class="cell medium-4">
+      <h1><%= chunk.name %></h1>
+      <p class="lead"><%= chunk.description %></p>
+
+      <div class="chunk-code">
+        <pre>
+          <code class="<%= chunk.language %>">
+<%= chunk.content %>
+          </code>
+        </pre>
+      </div>
+
+      <p class="chunk-lang"><%= chunk.language %></p>
+    </div>
+  </div>
+</div>
+<script>
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+</script>

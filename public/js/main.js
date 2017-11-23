@@ -10,7 +10,8 @@ function copyToClipboard(element) {
 // pero asi puedo cambiarlas para probar rápidamente
 const loginModalUrl = '/login?layout=modals';
 const editModalUrl = '/edit?layout=modals';
-const detailModalUrl = '/detail?layout=modals';
+//const detailModalUrl = '/detail?layout=modals';
+const detailModalUrl = 'chunk-view.html?layout=modals';
 
 
 function init(){
@@ -48,6 +49,20 @@ function init(){
   $('.chunk-view').on('click', () => {
     let target = $(event.target).attr('data-view-target');
     $.ajax({url: detailModalUrl + '&id=' + target})
+      .then(resp => {
+        $chunkModal.html(resp).foundation('open');
+      })
+      .catch(err => console.log(err));
+  });
+
+  // Inicializa los modales en links
+
+  $('[data-ajax-open="true"]').on('click', () => {
+    event.preventDefault();
+    let target = $(event.target).attr('href');
+    let param = target.indexOf('?') == -1 ? '?' : '&';
+    target = target + param + 'layout=modals';
+    $.ajax({url: target})
       .then(resp => {
         $chunkModal.html(resp).foundation('open');
       })

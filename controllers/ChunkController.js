@@ -1,18 +1,19 @@
 const User = require('../models/User');
 const Chunk = require('../models/Chunk');
 const Pile = require('../models/Pile');
+const LANGS = require('../models/languages')
 
 module.exports = {
   getNew: (req, res, next) => {
     let layout = req.query.layout ? req.query.layout : 'layout';
-    res.render('chunk/new', {layout: layout});
+    res.render('chunk/new', {layout: layout, langs: LANGS});
   },
   postNew: (req, res, next) => {
   //Aqui tendremos que buscar la manera de escapar el código
   //De momento lo pegamos tal cual
   const codeContent = req.body.content;
   //Construimos un array con los tags
-  const tagsArr = req.body.tags !== '' ? req.body.tags.replace(/,\s*$/, "").split(',') : '';
+  const tagsArr = req.body.tags !== '' ? req.body.tags.replace(/,\s*$/, "").trim().split(',') : '';
   const chunkInfo = {
     creator: req.user._id,
     name: req.body.name,
@@ -52,7 +53,7 @@ module.exports = {
     const chunkId = req.query.id;
     Chunk.findById(chunkId)
       .then(chunk => {
-        return res.render('chunk/edit', {chunk, layout: layout});
+        return res.render('chunk/edit', {chunk, layout: layout, langs: LANGS});
       })
       .catch(err => next(err));
   },
@@ -92,8 +93,8 @@ module.exports = {
               Pile.findOneAndUpdate({owner: req.user._id}, {
                 $push: {'elements': chunkObj }
               }, {new: true} )
-                .then((pile) => {
-                  return res.render('main', {pile});
+                .then(() => {
+                  return res.redirect('/main');
                 })
                 .catch(err => next(err));
             })

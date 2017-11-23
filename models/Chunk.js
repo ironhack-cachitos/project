@@ -7,7 +7,7 @@ const chunkSchema = new Schema({
   name: { type: String, maxlength: 40 },
   description: { type: String },
   content: { type: String },
-  language: { type: String, enum: LANG, required: true },
+  language: { type: String, enum: LANG, required: true, default: 'javascript'},
   likes: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   tags: [String]
 }, {
