@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const Chunk = require('../models/Chunk');
 const Pile = require('../models/Pile');
-const LANGS = require('../models/languages')
+const LANGS = require('../models/languages');
 
 module.exports = {
   getNew: (req, res, next) => {
@@ -31,7 +31,7 @@ module.exports = {
         $push: {'elements': chunkObj }
       }, {new: true} )
         .then((pile) => {
-          return res.render('main', {pile});
+          return res.redirect('/main');
         })
         .catch(err => next(err));
     })
