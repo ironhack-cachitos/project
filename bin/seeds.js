@@ -17,6 +17,7 @@ const hashPass = bcrypt.hashSync(password, salt);
 
 const user = new User({
   username: 'Paco',
+  fullname: 'Paco López',
   email: 'paco@gmail.com',
   password: hashPass
 });
