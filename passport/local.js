@@ -1,6 +1,7 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("../models/User");
+const Pile = require("../models/Pile");
 const bcrypt = require("bcrypt");
 
 passport.use('local-login', new LocalStrategy((username, password, next) => {
@@ -40,11 +41,25 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password: hashPass
                 });
-                console.log('ANTES DEL SAVE')
-                newUser.save((err) => {
-                    if (err){ next(err); }
-                    return next(null, newUser);
+                const newPile = new Pile({
+                  owner : newUser._id,
+                  elements : []
                 });
+                User.create(newUser)
+                  .then(user => {
+                    return Pile.create(newPile);
+                  })
+                  .then((pile) => {
+                    return User.findByIdAndUpdate(pile.owner, { $set: { pile: pile._id }});
+                  })
+                  .then((user) => {
+                    return next(null, user);
+                  })
+                  .catch(err => { next (err);});
+                // (err) => {
+                //     if (err){ next(err); }
+                //     return next(null, newUser);
+                // });
             }
         });
     });

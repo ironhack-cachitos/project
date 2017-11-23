@@ -72,13 +72,13 @@ function init(){
   var clipboard = new Clipboard('.chunk-copy');
 
   clipboard.on('success', (e) => {
-    e.clearSelection();
     $(event.target)
       .parents('.chunk')
       .addClass('copied');
     console.info('Action:', e.action);
     console.info('Text:', e.text);
     console.info('Trigger:', e.trigger);
+    e.clearSelection();
   });
 
   clipboard.on('error', (e) => {

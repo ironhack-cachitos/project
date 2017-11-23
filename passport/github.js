@@ -2,18 +2,13 @@ const passport = require("passport");
 const GitHubStrategy = require("passport-github2").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 const User = require("../models/User");
+const Pile = require("../models/Pile");
 
 require("dotenv").config();
 
-// passport.serializeUser(function(user, cb) {
-//   cb(null, user);
-// });
-// passport.deserializeUser(function(obj, cb) {
-//   cb(null, obj);
-// });
-
 const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
+const GITHUB_CALLBACK = process.env.GITHUB_CALLBACK;
 
 // Initialize GitHubStrategy
 
@@ -22,12 +17,12 @@ passport.use(
     {
       clientID: GITHUB_CLIENT_ID,
       clientSecret: GITHUB_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/github/callback"
+      callbackURL: GITHUB_CALLBACK
     },
-     (accessToken, refreshToken, profile, cb) => {
+     (accessToken, refreshToken, profile, next) => {
     User.findOne({ githubId: profile.id }, (err, user) => {
-      if (err) { return cb(err); }
-      if (user) { return cb(null, user); }
+      if (err) { return next(err); }
+      if (user) { return next(null, user); }
     //function(accessToken, refreshToken, profile, done) {
       if (profile._json.id) {
         var githubId = profile._json.id;
@@ -45,7 +40,7 @@ passport.use(
         var avatar = profile._json.avatar_url;
       }
 
-      let newUser = new User({
+      const newUser = new User({
         token: accessToken,
         githubId,
         name,
@@ -53,11 +48,26 @@ passport.use(
         email,
         avatar
       });
-
-       newUser.save((err) => {
-        if (err) { return cb(err); }
-        cb(null, newUser);
+      const newPile = new Pile({
+        owner : newUser._id,
+        elements : []
       });
+      User.create(newUser)
+        .then(user => {
+          return Pile.create(newPile);
+        })
+        .then((pile) => {
+          return User.findByIdAndUpdate(pile.owner, { $set: { pile: pile._id }});
+        })
+        .then((user) => {
+          return next(null, user);
+        })
+        .catch(err => { next (err);});
+
+      //  newUser.save((err) => {
+      //   if (err) { return cb(err); }
+      //   cb(null, newUser);
+      // });
 
     });
   })
