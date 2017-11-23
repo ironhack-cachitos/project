@@ -16,8 +16,7 @@ module.exports = {
       .catch(err => next(err));
   },
   findOnePost: (req, res) => {
-    ser
-      .findByIdAndUpdate(req.params.id, {
+    User.findByIdAndUpdate(req.params.id, {
         $set: {
           username: req.body.user,
           password: req.body.password,

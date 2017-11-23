@@ -32,6 +32,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads/')));
 app.use(layouts);
 
 app.use(
@@ -60,15 +61,14 @@ app.use( (req, res, next) => {
 
 const index = require("./routes/index");
 const auth = require("./routes/auth");
-const main = require("./routes/main");
 const userRoutes = require("./routes/user");
 const pile = require("./routes/pile");
 const chunks = require("./routes/chunks");
 
 app.use("/", index);
 app.use("/", auth);
-app.use("/", pile);
-app.use("/main", index);
+app.use("/pile", pile);
+app.use("/user", userRoutes);
 app.use("/chunk", chunks);
 
 

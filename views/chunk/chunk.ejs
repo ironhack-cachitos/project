@@ -1,10 +1,9 @@
 <div class="chunk">
   <h4 class="chunk-name"><%= chunk.name %></h4>
   <p class="chunk-description"><%= chunk.description %></p>
+  <p class="chunk-lang"><%= chunk.language %></p>
   <div class="chunk-content">
-    <textarea id="code-<%= chunk.id %>">
-<%- chunk.content %>
-    </textarea>
+    <pre class="out"><code id="code-<%= chunk.id %>"><%= chunk.content %></code></pre>
   </div>
   <div class="chunk-controls">
     <div class="small button-group">

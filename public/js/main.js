@@ -1,17 +1,10 @@
-function copyToClipboard(element) {
-  var $temp = $("<input type='hidden'>");
-  $("body").append($temp);
-  $temp.val($(element).text()).select();
-  document.execCommand("copy");
-  $temp.remove();
-}
 // Variables globales que estaría bien que estuvieran
 // en otro fichero o quizá dentro del scope de init,
 // pero asi puedo cambiarlas para probar rápidamente
 const loginModalUrl = '/login?layout=modals';
-const editModalUrl = '/edit?layout=modals';
-//const detailModalUrl = '/detail?layout=modals';
-const detailModalUrl = 'chunk-view.html?layout=modals';
+const editModalUrl = '/chunk/edit?layout=modals';
+const detailModalUrl = '/chunk/detail?layout=modals';
+//const detailModalUrl = 'chunk-view.html?layout=modals';
 
 
 function init(){
@@ -76,22 +69,22 @@ function init(){
 
   //Inicializa los botones de copia
 
-  // var clipboard = new Clipboard('.chunk-copy');
-  //
-  // clipboard.on('success', (e) => {
-  //   e.clearSelection();
-  //   $(event.target)
-  //     .parents('.chunk')
-  //     .addClass('copied');
-  //   console.info('Action:', e.action);
-  //   console.info('Text:', e.text);
-  //   console.info('Trigger:', e.trigger);
-  // });
-  //
-  // clipboard.on('error', (e) => {
-  //     console.error('Action:', e.action);
-  //     console.error('Trigger:', e.trigger);
-  // });
+  var clipboard = new Clipboard('.chunk-copy');
+
+  clipboard.on('success', (e) => {
+    e.clearSelection();
+    $(event.target)
+      .parents('.chunk')
+      .addClass('copied');
+    console.info('Action:', e.action);
+    console.info('Text:', e.text);
+    console.info('Trigger:', e.trigger);
+  });
+
+  clipboard.on('error', (e) => {
+      console.error('Action:', e.action);
+      console.error('Trigger:', e.trigger);
+  });
 
   // Limpiamos la clase de copies en el mouseleave y blur
   // en todos los Botones de copia
@@ -105,3 +98,11 @@ function init(){
 }
 
 $(document).ready(init);
+
+function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(element).text()).select();
+  document.execCommand("copy");
+  //$temp.remove();
+}

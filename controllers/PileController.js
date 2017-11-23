@@ -1,40 +1,34 @@
 const User = require("../models/User");
 const Pile = require("../models/Pile");
+const Chunk = require("../models/Chunk");
 const express = require("express");
 const router = express.Router();
 
 module.exports = {
   index: (req, res, next) => {
-    Pile.find({}, (err, pile) => {
-      res.render("piles/index", {
-        pile: pile
-      });
-    });
+    Pile.find()
+      .then(pile => {
+        res.render("piles/index", {pile});
+      })
+      .catch(err => next(err));
   },
   detail: (req, res, next) => {
-    Pile.findById(req.params.userId, (err, pile) => {
-      if (err) {
-        console.log(err);
-      }
-      user.find(
-        {
-          pileId: req.params.id
-        },
-        (err, pile) => {
-          res.render("piles/index", {
-            pile: pile,
-            user: res.locals.user
-          });
-        }
-      );
-    });
+    Pile.findById(req.user.pile).populate('elements')
+      .then(pile => {
+        let promises = pile.elements.map(e => Chunk.findById(e.chunk));
+        return Promise.all(promises);
+      })
+      .then(chunks =>{
+        res.render('pile/list', {chunks});
+      })
+      .catch(err => next(err));
   },
-  lenguage: (req, res, next) => {
-    let languageList = ''
-    Pile.find({}).populate("user")
-          .then(languages => {
-            languageList = pile
-            return User.find(Pile.languages,{})
+  language: (req, res, next) => {
+    let lang = req.query.lang;
+    Pile.findById(req.user.pile).populate('elements')
+      .then(pile => {
+        console.log(pile);
+      })
+      .catch(err => next(err));
   }
-)},
 };

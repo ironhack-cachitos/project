@@ -1,23 +1,38 @@
 <div class="grid-container-fluid">
   <div class="grid-x align-center align-middle">
-    <div class="cell medium-4">
-      <h1><%= chunk.name %></h1>
-      <p class="lead"><%= chunk.description %></p>
+    <div class="cell medium-6">
+      <div class="chunk">
 
-      <div class="chunk-code">
-        <pre>
-          <code class="<%= chunk.language %>">
-<%= chunk.content %>
-          </code>
-        </pre>
+        <h2 class="chunk-name"><%= chunk.name %></h2>
+        <p class="chunk-description">
+          <%= chunk.description %>
+        </p>
+        <div class="chunk-code">
+          <pre>
+            <code class="<%= chunk.language %>" id="detail-<%= chunk.id %>">
+  <%= chunk.content %>
+            </code>
+          </pre>
+        </div>
+        <div class="grid-x">
+          <div class="cell medium-4">
+            <p class="chunk-lang">
+              <%= chunk.language %>
+            </p>
+          </div>
+          <div class="cell medium-4 text-right">
+            <div class="large button-group">
+              <a href="/chunk/edit?id=<%= chunk.id %>" class="button" data-ajax-open="true">Editar</a>
+              <button class="chunk-copy button" data-clipboard-target="#detail-<%= chunk.id %>">Copiar</button>
+            </div>
+          </div>
+        </div>
+
       </div>
-
-      <p class="chunk-lang"><%= chunk.language %></p>
     </div>
   </div>
-</div>
-<script>
-  $('pre code').each(function(i, block) {
-    hljs.highlightBlock(block);
-  });
-</script>
+  <script>
+    $('pre code').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+  </script>
