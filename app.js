@@ -68,10 +68,6 @@ const chunks = require("./routes/chunks");
 app.use("/", index);
 app.use("/", auth);
 app.use("/pile", pile);
-<<<<<<< HEAD
-app.use("/user", userRoutes);
-=======
->>>>>>> prieto
 app.use("/chunk", chunks);
 app.use("/user", userRoutes);
 

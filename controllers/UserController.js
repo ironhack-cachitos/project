@@ -12,25 +12,12 @@ module.exports = {
       })
       .catch(err => next(err));
   },
-<<<<<<< HEAD
-  findOnePost: (req, res) => {
-    User.findByIdAndUpdate(req.params.id, {
-        $set: {
-          username: req.body.user,
-          password: req.body.password,
-          email: req.body.email,
-          //avatar: req.body.avatar,
-          avatar: `/uploads/user-picture/${req.file.filename}`,
-          avatar_name: req.file.originalname
-        }
-=======
   findOneEdit: (req, res) => {
     let layout = req.query.layout ? req.query.layout : "layout";
     const userId = req.query.id;
     User.findById(userId)
       .then(selectedUser => {
         res.render("user/edit", { selectedUser, layout: layout });
->>>>>>> prieto
       })
       .catch(err => next(err));
   },
