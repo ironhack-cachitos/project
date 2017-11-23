@@ -40,7 +40,7 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password: hashPass
                 });
-
+                console.log('ANTES DEL SAVE')
                 newUser.save((err) => {
                     if (err){ next(err); }
                     return next(null, newUser);

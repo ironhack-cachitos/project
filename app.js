@@ -67,9 +67,9 @@ const chunks = require("./routes/chunks");
 
 app.use("/", index);
 app.use("/", auth);
-app.use("/", pile);
-app.use("/main", index);
+app.use("/pile", pile);
 app.use("/chunk", chunks);
+app.use("/user", userRoutes);
 
 
 // catch 404 and forward to error handler

@@ -4,7 +4,7 @@
       <div class="user-control">
         <% if (user) { %>
           <img src="<%= user.avatar %>" alt="Avatar of <%= user.username %>" width="40" height="40">
-          <p><a href="/user/edit?id=<%= user.id %>" data-ajax-open="true"><%= user.username %></a></p>
+          <p><a href="/user" data-ajax-open="true"><%= user.username %></a></p>
           <a href="/logout">Logout</a>
         <% } %>
       </div>

@@ -1,6 +1,33 @@
-<% if (user) { %>
-    <div>
-        <a href="/main"></a>
-        <a href="/logout">Logout</a>
-    </div>
-    <% } %>
+<div>
+    <h1>EDITAR USUARIO</h1>
+    <br>
+    <form action="/user/edit/<%= user._id %>" method="post" enctype="multipart/form-data">
+        <div>
+            <label>Username</label>
+            <input type="text" name="username" value="<%= user.username %>">
+        </div>
+        <div>
+            <label>Email</label>
+            <input type="text" name="email" value="<%= user.email %>">
+        </div>
+        <div>
+            <div>
+                <div>
+                    <span>Selecciona Archivo</span>
+                    <input id="avatar" name="avatar" type="file">
+                </div>
+                <div>
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <button type="submit" name="action" value="Submit">ACTUALIZAR
+                    <i>send</i>
+                </button>
+                <br></br>
+            </div>
+        </div>
+    </form>
+</div>
