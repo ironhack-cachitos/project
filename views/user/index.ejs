@@ -1,6 +1,42 @@
-<% if (user) { %>
+<div class="">
+    <h3 class=""> Tu perfil</h3>
+    <br>
+    <ul class="">
+        <li class="">
+            <img src="<%= user.avatar %>" alt="Avatar of <%= user.username %>" width="40" height="40">
+            <span class="title">Nombre</span>
+            <p>Tu nombre de usuario es:
+                <br>
+                <%= user.username %>
+            </p>
+        </li>
+        <li class="">
+            <i class="">folder</i>
+            <span class="">Email de Usuario</span>
+            <p>Su email es:
+                <br>
+                <%= user.email %>
+            </p>
+        </li>
+        <li class="">
+            <i class=""></i>
+            <span class="">Nombre de Usuario</span>
+            <p>Su nombre de usuario es:
+                <br>
+                <%= user.username %>
+            </p>
+        </li>
+</div>
+</ul>
+<br>
+<div>
     <div>
-        <a href="/main"></a>
-        <a href="/logout">Logout</a>
+        <a href="/user/edit?id=<%= user.id %>" data-ajax-open="true">
+            <span></span>EDITAR MI USUARIO</a>
+        <br></br>
     </div>
-    <% } %>
+    <div>
+        <a href="/user/delete?id=<%= user.id %>" data-ajax-open="true">
+            <span></span>Eliminar Usuario</a>
+    </div>
+</div>

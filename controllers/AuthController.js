@@ -34,6 +34,7 @@ module.exports = {
     let layout = req.query.layout ? req.query.layout : 'layout';
     res.render("auth/signup", { layout: layout});
   },
+  
   signupPost: passport.authenticate('local-signup', {
     successReturnToOrRedirect: "/main",
     //successRedirect : '/',
