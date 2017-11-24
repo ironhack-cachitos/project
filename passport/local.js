@@ -28,10 +28,10 @@ passport.use('local-signup', new LocalStrategy(
             'username': username
         }, (err, user) => {
             if (err){
-              return next(err, { message: "Algo ha pasado"});
+              return next(err, { message: "Sorry, something happened with your request"});
             }
             if (user) {
-                return next(null, false, { message: "El nombre de usuario ya existe"});
+                return next(null, false, { message: "That username already exists"});
             } else {
                 // Destructure the body
                 const { username, email, password } = req.body;
