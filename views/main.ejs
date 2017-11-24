@@ -39,10 +39,7 @@
               <div class="cell">
                 <img src="/images/logo.svg" alt="cachitos" class="logo">
               </div>
-              <div class="cell">
-                <% if (typeof(welcomeMsg) !== "undefined"){ %>
-                <h1><strong><%= welcomeMsg %>i, <% if (user.fullname) { %><%= user.fullname %><% } else { %><%= user.username %><% } %>!</strong></h1>
-                <% } %>
+              <div class="cell" id="random-chunk">
               </div>
             </div>
           </div>

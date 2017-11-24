@@ -222,3 +222,12 @@ pre code {
   background: $banner-color;
   padding: 2rem;
 }
+#random-chunk {
+  padding: 2rem;
+  p, h2, h3 {
+    color: $secondary-text-color;
+  }
+  pre {
+    font-size: 80%;
+  }
+}

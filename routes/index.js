@@ -6,5 +6,6 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 router.get('/', ensureLoggedOut('/main'), indexRouter.get);
 router.get('/main', ensureLoggedIn('/'), indexRouter.pile);
+router.get('/random', ensureLoggedIn('/'), indexRouter.random);
 
 module.exports = router;

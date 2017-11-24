@@ -1,15 +1,18 @@
+<% if (chunk){ %>
 <div class="grid-container-fluid">
   <div class="grid-x align-center align-middle">
     <div class="cell medium-6">
       <div class="chunk">
         <h2 class="chunk-name"><%= chunk.name %></h2>
-        <p class="chunk-description"><%= chunk.description %></p>
-        <p class="chunk-lang"><%= chunk.language %></p>
+        <p class="chunk-description">
+          <%= chunk.description %>
+        </p>
+        <p class="chunk-lang">
+          <%= chunk.language %>
+        </p>
         <div class="chunk-code">
           <pre>
-            <code class="<%= chunk.language %>" id="detail-<%= chunk.id %>">
-  <%= chunk.content %>
-            </code>
+            <code class="<%= chunk.language %>" id="detail-<%= chunk.id %>"><%= chunk.content %></code>
           </pre>
         </div>
         <div class="float-right">
@@ -22,3 +25,5 @@
       </div>
     </div>
   </div>
+</div>
+<% } %>

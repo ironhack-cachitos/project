@@ -22,6 +22,14 @@ module.exports = {
       })
       .catch(err => next(err));
   },
+  random: (req, res, next) => {
+    Chunk.find()
+      .then(chunks => {
+        let randomChunk = chunks[Math.floor(Math.random() * chunks.length)];
+        res.render('chunk/random', {chunk : randomChunk});
+      })
+      .catch(err => next(err));
+  }
 };
 
 // Comment to commit. For renaming purposes

@@ -1,6 +1,7 @@
 const loginModalUrl = '/login?layout=modals';
 const editModalUrl = '/chunk/edit?layout=modals';
 const detailModalUrl = '/chunk/detail?layout=modals';
+const randomUrl = '/random?layout=modals';
 
 function init(){
   // Inicializamos Foundation
@@ -74,6 +75,14 @@ function init(){
   $(document).on('mouseleave', '.chunk-copy', event => {
     $(event.target).parents('.chunk').removeClass('copied');
   });
+
+  if ($('#random-chunk')) {
+    $.ajax({url: randomUrl})
+      .then(resp => {
+        $('#random-chunk').html(resp).trigger('ajaxLoaded');
+      })
+      .catch(err => console.log(err));
+  }
 }
 
 $(document).ready(init);

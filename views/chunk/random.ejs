@@ -1,0 +1,14 @@
+<% if (chunk){ %>
+<div class="chunk">
+  <h2><strong>Random Chunk</strong></h2>
+  <p><%= chunk.name %></p>
+  <div class="chunk-code">
+    <pre>
+      <code class="<%= chunk.language %>" id="detail-<%= chunk.id %>"><%= chunk.content %></code>
+    </pre>
+  </div>
+  <div class="float-right">
+    <button class="chunk-copy button" data-clipboard-target="#detail-<%= chunk.id %>">Copy</button>
+  </div>
+</div>
+<% } %>
