@@ -1,26 +1,34 @@
 <form id="signup-form" action="/signup" method="post">
-  <h3>Sign Up!</h3>
-  <p>And start saving your code cachitos right away</p>
-  <div>
-    <label><span class="show-for-sr">Username</span>
-      <input type="text" name="username" placeholder="Username">
-    </label>
+  <div class="grid-container">
+    <div class="grid-x align-center align-middle" style="height:80vh">
+      <div class="cell medium-3">
+        <h2>Sign Up!</h3>
+        <p class="lead">And start saving your code &lsquo;cachitos&rsquo; right away</p>
+        <fieldset>
+          <label><span>Username</span>
+            <input type="text" name="username" placeholder="Steve McQueen">
+          </label>
+        </fieldset>
+        <fieldset>
+          <label><span>Password</span>
+            <input type="password" name="password" placeholder="********">
+          </label>
+        </fieldset>
+        <fieldset>
+          <label><span>Email</span>
+            <input type="email" name="email" placeholder="email@domain.com">
+        </fieldset>
+        <% if (typeof error != "undefined") { %>
+          <% if(error) { %>
+            <div class="alert callout">
+              <p><%= message %></p>
+            </div>
+          <% } %>
+        <% } %>
+        <div class="float-right">
+          <button class="large warning button" type="submit">Create account</button>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    <label><span class="show-for-sr">Password</span>
-      <input type="password" name="password" placeholder="Password">
-    </label>
-  </div>
-  <div>
-    <label><span class="show-for-sr">Email</span>
-      <input type="email" name="email" placeholder="email@domain.com">
-  </div>
-  <div>
-    <button class="button" type="submit">Create account</button>
-  </div>
-  <% if (typeof message != "undefined") { %>
-  <div data-abide-error class="alert callout" style="display: none;">
-    <p><%= message %></p>
-  </div>
-  <% } %>
 </form>

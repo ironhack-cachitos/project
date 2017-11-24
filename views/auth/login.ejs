@@ -1,26 +1,28 @@
 <form action="/login" method="post" class="alt-form">
   <div class="grid-container">
-    <div class="grid-x align-center align-middle">
-      <div class="cell">
-        <h3>Login</h3>
-        <div>
-          <label><span class="show-for-sr">Username</span>
-            <input type="text" name="username" placeholder="Username">
+    <div class="grid-x align-center align-middle" style="height:80vh">
+      <div class="cell medium-3">
+        <h2>Login</h2>
+        <fieldset>
+          <label><span>Username</span>
+            <input type="text" name="username" placeholder="Ali MacGraw">
           </label>
-        </div>
-        <div>
-          <label><span class="show-for-sr">Password</span>
-            <input type="password" name="password" placeholder="Password">
+        </fieldset>
+        <fieldset>
+          <label><span>Password</span>
+            <input type="password" name="password" placeholder="*******">
           </label>
-        </div>
-        <div>
-          <button class="secondary button" type="submit">Login</button>
-        </div>
-        <% if (typeof message != "undefined") { %>
-        <div data-abide-error class="alert callout" style="display: none;">
-          <p><%= message %></p>
-        </div>
+        </fieldset>
+        <% if (typeof error != "undefined") { %>
+          <% if(error) { %>
+            <div class="alert callout">
+              <p><%= message %></p>
+            </div>
+          <% } %>
         <% } %>
+        <div class="float-right">
+          <button class="secondary large button" type="submit">Login</button>
+        </div>
       </div>
     </div>
   </div>
