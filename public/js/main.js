@@ -59,14 +59,14 @@ function init(){
   //Inicializa los botones de copia
   var clipboard = new Clipboard('.chunk-copy');
 
-  clipboard.on('success', event => {
+  clipboard.on('success', e => {
     $(event.target).parents('.chunk').addClass('copied');
-    console.info('Copied!:', event.text);
-    event.clearSelection();
+    console.info('Copied!:', e.text);
+    e.clearSelection();
   });
 
-  clipboard.on('error', event => {
-    console.error('Action:', event.action);
+  clipboard.on('error', e => {
+    console.error('Action:', e.action);
   });
 
   // Limpiamos la clase de copies en el mouseleave y blur
