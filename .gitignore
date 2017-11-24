@@ -29,8 +29,11 @@ node_modules
 # Debug log from npm
 npm-debug.log
 
-# Exclude (for the moment the docs directory)
+# Exclude (for the moment) the docs directory
 docs
 
 # Exclude sketch files
 *.sketch
+
+# Exclude OSX files
+.DS_Store

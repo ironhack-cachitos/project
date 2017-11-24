@@ -1,0 +1,24 @@
+<div class="grid-container-fluid">
+  <div class="grid-x align-center align-middle">
+    <div class="cell medium-6">
+      <div class="chunk">
+        <h2 class="chunk-name"><%= chunk.name %></h2>
+        <p class="chunk-description"><%= chunk.description %></p>
+        <p class="chunk-lang"><%= chunk.language %></p>
+        <div class="chunk-code">
+          <pre>
+            <code class="<%= chunk.language %>" id="detail-<%= chunk.id %>">
+  <%= chunk.content %>
+            </code>
+          </pre>
+        </div>
+        <div class="float-right">
+          <div class="large button-group">
+            <button class="chunk-copy button" data-clipboard-target="#detail-<%= chunk.id %>">Copy</button>
+            <a href="/chunk/edit?id=<%= chunk.id %>" class="button" data-ajax-open="true">Edit</a>
+            <a href="/chunk/delete?id=<%= chunk.id %>" class="chunk-delete button" data-ajax-open="true">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

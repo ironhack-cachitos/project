@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Static views main</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/foundation.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" href="/css/atom-one-dark.css">
+  </head>
+  <body>
+    <div class="grid-container full">
+      <div class="grid-x grid-margin-x align-right align-stretch">
+        <main class="user-pile cell small-order-1">
+          <div class="user-control">
+
+          </div>
+          <section class="user-pile grid-y grid-padding-y">
+            <div class="chunk">
+              <h4 class="chunk-name">Cachito name</h4>
+              <p class="chunk-description">A very long description with many words to check</p>
+              <div class="chunk-content">
+                <textarea id="code-01">var foo = 'Hello!';</textarea>
+              </div>
+              <div class="chunk-controls">
+                <div class="small button-group">
+                  <button class="button chunk-copy"
+                          data-clipboard-target="#code-01">Copy</button>
+                  <button class="button chunk-edit"
+                          data-edit-target="01">Edit</button>
+                  <button class="button chunk-view"
+                          data-view-target="01">View</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="chunk">
+              <h4 class="chunk-name">Cachito name</h4>
+              <p class="chunk-description">Description</p>
+              <div class="chunk-content">
+                <textarea id="code-02">
+{
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+    },
+    "rules": {
+        "semi": 2
+    }
+}
+</textarea>
+              </div>
+              <div class="chunk-controls">
+                <div class="small button-group">
+                  <button class="button chunk-copy"
+                          onclick="copyToClipboard('#code-02')">Copy</button>
+                  <button class="button chunk-edit"
+                          data-edit-target="02">Edit</button>
+                  <button class="button chunk-view"
+                          data-view-target="02">View</button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+        <section class="main-piles auto cell">
+          <iframe src="piles.html" frameborder="0"></iframe>
+        </section>
+      </div>
+    </div>
+    <div class="full reveal" id="chunk-modal" data-reveal data-animation-in="slide-in-up" data-animation-out="slide-out-down"></div>
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/what-input.js"></script>
+    <script src="/js/foundation.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/highlight.pack.js"></script>
+    <script src="/js/clipboard.min.js"></script>
+  </body>
+</html>

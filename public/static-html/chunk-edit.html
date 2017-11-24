@@ -1,0 +1,61 @@
+<form action="/edit?id=0000" method="post">
+  <div class="grid-container-fluid">
+    <div class="grid-x align-center align-middle">
+      <div class="cell medium-4">
+        <legend><h3>Edit this 'cachito'</h3></legend>
+        <div>
+          <label><span class="show-for-sr">Name</span>
+            <input type="text" name="name" value="Cachito name">
+          </label>
+        </div>
+        <div>
+          <label><span class="show-for-sr">Description</span>
+            <input type="text" name="description" value="Description" placeholder="Description">
+          </label>
+        </div>
+        <div>
+          <label><span class="show-for-sr">Code</span>
+            <textarea name="content" id="content" cols="30" rows="10">
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema({
+  username: String,
+  password: String
+}, {
+  timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
+});
+
+const User = mongoose.model("User", userSchema);
+
+module.exports = User;
+            </textarea>
+          </label>
+        </div>
+        <div>
+          <label><span class="show-for-sr">Tags</span>
+            <input type="text" name="tags" placeholder="tags, tags, tags">
+          </label>
+          <p class="help-text">A list, separated by commas</p>
+        </div>
+        <div>
+          <label><span class="show-for-sr">Language</span>
+            <select name="languages" id="languages">
+              <option value="javascript" selected>Javascript</option>
+              <option value="HTML">HTML</option>
+              <option value="CSS">CSS</option>
+              <option value="Shell">Shell</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <button class="large button" type="submit">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>
+<button class="close-button" data-close aria-label="Close modal" type="button">
+  <span aria-hidden="true">&times;</span>
+</button>

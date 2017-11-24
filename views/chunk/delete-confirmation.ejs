@@ -1,0 +1,16 @@
+<div class="grid-container-fluid">
+  <div class="grid-x align-center align-middle" style="height:80vh">
+    <div class="cell medium-4">
+      <form action="/chunk/delete/<%= chunk.id %>" method="post">
+        <h2 class="text-center">Are you sure?</h2>
+        <p class="text-center">You're going to delete "<%= chunk.name %>"</p>
+        <br>
+        <br>
+        <div class="large expanded button-group">
+          <button class=" button" type="submit">Delete</button>
+          <a href="/chunk/detail?id=<%= chunk.id %>" class="button" data-ajax-open="true">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
