@@ -1,4 +1,4 @@
-$banner-color: #F0FF00;
+$banner-color: #EBEDF1;
 $tool-bar-bg: #323232;
 $tool-bar-color: #FFFFFF;
 $tool-bar-bg-highlight: #5A5A5A;
@@ -77,13 +77,16 @@ $primary-color: #00A130;
 .user-tools {
   bottom: 0;
 }
-.empty-pile-message{
+.lateral-bar-message,
+.big-message{
   color: $secondary-text-color;
-  margin-top: 10rem;
   padding: 2rem;
 }
+.lateral-bar-message {
+  margin-top: 16vh;
+}
 .big-callout{
-  font-size: 2em;
+  font-size: 1.75em;
   font-weight: bold;
   p {
     line-height: 1.33;
@@ -92,12 +95,17 @@ $primary-color: #00A130;
 .chunk-list {
   margin-top: $controls-height;
 }
-.user-pile {
+hr.inset {
+  border-top: 2px solid lighten($tool-bar-bg, 4%);
+  border-bottom: 2px solid darken($tool-bar-bg, 4%);
+}
+.lateral-bar {
   background-color: $tool-bar-bg;
   height: 100vh;
-  max-width: 380px;
-  min-width: 320px;
-  size: 33vw;
+  @extend .tool-bar-size;
+}
+.user-pile {
+  @extend .lateral-bar;
 
   .chunk {
     background: $tool-bar-bg-highlight;
@@ -176,9 +184,9 @@ $primary-color: #00A130;
   text-transform: uppercase;
 }
 
-.main-piles {
-  background-color: #F0FF00;
-  height: 100%;
+.dashboard {
+  //min-height: 100%;
+  background: $banner-color;
 }
 .close-button.large {
   font-size: 4em;
@@ -201,4 +209,11 @@ label > span {
 }
 pre code {
   border: none;
+}
+.logo {
+  margin-top: .75rem;
+}
+.footer {
+  background: $banner-color;
+  padding: 2rem;
 }

@@ -1,7 +1,7 @@
 <div class="grid-container full">
   <div class="grid-x align-right align-stretch">
 
-    <main class="user-pile cell small-order-1">
+    <main class="user-pile cell medium-cell-block-y small-order-1">
       <div class="user-control">
         <% if (user) { %>
           <div class="user-picture">
@@ -22,7 +22,7 @@
             <% include pile/list.ejs %>
           </section>
         <% } else {%>
-          <div class="empty-pile-message big-callout">
+          <div class="lateral-bar-message big-callout">
             <p>Your collection of 'cachitos' is empty.</p>
             <p>Click the <a href="/chunk/new" data-ajax-open="true">New</a> button below to create the first one</p>
             <p class="huge">&#8681;</p>
@@ -33,8 +33,23 @@
         <a href="/chunk/new" class="large button" data-ajax-open="true">New cachito</a>
       </div>
     </main>
-    <section class="main-piles auto cell">
-
+    <section class="dashboard auto cell">
+      <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+          <div class="cell medium-6">
+            <div class="grid-y grid-padding-y">
+              <div class="cell">
+                <img src="/images/logo.svg" alt="cachitos" class="logo">
+              </div>
+              <div class="cell">
+                <% if (typeof(welcomeMsg) !== "undefined"){ %>
+                <h1><strong><%= welcomeMsg %>i, <% if (user.fullname) { %><%= user.fullname %><% } else { %><%= user.username %><% } %>!</strong></h1>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
 </div>

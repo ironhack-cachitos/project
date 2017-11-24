@@ -1,31 +1,47 @@
-<div class="top-bar">
-  <div class="top-bar-right">
-    <ul class="menu">
-      <li>
-        <button type="button" id="login-button" class="secondary button">Login</button>
-      </li>
-      <li class="menu-text">or</li>
-      <li>
-        <a href="/auth/github" class="button">Login with github</a>
-      </li>
-    </ul>
+<div class="grid-container full">
+  <div class="grid-x align-right align-stretch">
+
+    <div class="lateral-bar cell medium-cell-block-y small-order-1">
+      <div class="lateral-bar-message">
+        <div class="big-callout">
+          <p>Welcome visitor! This are your options:</p>
+        </div>
+        <p>If you have an account already, you can:</p>
+        <p>
+          <a href="/login" class="large secondary button" data-ajax-open="true">Login</a>
+          <a href="/auth/github" class="large button">Login with github</a>
+        </p>
+        <hr class="inset">
+        <p>If you don't, you can create one right now:</p>
+        <a href="/signup" class="large warning button" data-ajax-open="true">Sign Up!</a>
+      </div>
+    </div>
+
+    <section class="dashboard auto cell">
+      <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+          <div class="cell medium-6">
+            <div class="grid-y grid-padding-y align-stretch align-justify">
+              <div class="cell">
+                <img src="/images/logo.svg" alt="cachitos" class="logo">
+              </div>
+              <div class="cell medium-8">
+                <div class="big-message big-callout">
+                  <p>Cachitos is an online warehouse to store little chunks (&lsquo;cachitos&rsquo;) of reusable code for your everyday pleasure.</p>
+                  <p>Just pop to your clipboard a snippet of code you know you have to use often and paste it here.</p>
+                  <p>It has Syntax highlighting via <a href="https://highlightjs.org/">highlight.js</a> and copy to clipboard functionality via <a href="https://clipboardjs.com/">clipboard.js</a>.</p>
+                  <p>That's all! Pretty simple. Sounds good? <a href="/signup" data-ajax-open="true">Sign Up</a> then!</p>
+                </div>
+              </div>
+              <div class="cell footer">
+                <img src="/images/ironhack-logo.svg" alt="Made at Ironhack" width="40" height="42">
+                <small>Made at ironhack. <a href="https://github.com/ironhack-cachitos/project/">Github repository</a></small>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </div>
 
-<section id="banner">
-  <div class="grid-container">
-    <div class="grid-x">
-      <div class="cell medium-5">
-        <h1>{cachitos}</h1>
-        <p class="lead">Lorem ipsum</p>
-      </div>
-      <div class="cell medium-3">
-        <div class="light-panel">
-          <% include auth/signup.ejs %>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<% include partials/login-modal.html %>
+<% include partials/chunk-modal.html %>
