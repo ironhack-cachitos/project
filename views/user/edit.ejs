@@ -4,29 +4,45 @@
       <h2>Your Profile</h2>
       <form action="/user/edit/<%= user._id %>" method="post" enctype="multipart/form-data">
         <fieldset>
-          <label><span>Full name</span>
+          <label>
+            <span>Full name</span>
             <input type="text" name="fullname" value="<%= user.fullname %>">
           </label>
         </fieldset>
         <fieldset>
-          <label><span>Username</span>
+          <label>
+            <span>Username</span>
             <input type="text" name="username" value="<%= user.username %>">
           </label>
         </fieldset>
         <fieldset>
-          <label><span>Email</span>
+          <label>
+            <span>Email</span>
             <input type="email" name="email" value="<%= user.email %>">
           </label>
         </fieldset>
         <fieldset>
-          <label for="avatar"><span>Picture</span></label>
-          <p class="help-text">Select a file from your computer</p>
-          <label for="avatar" class="secondary button">Upload file</label>
-          <input type="file" id="avatar" name="avatar" class="show-for-sr">
-          <input type="hidden" name="old_avatar" value="<%= user.avatar %>">
+          <div class="grid-x grid-margin-x">
+            <div class="cell small-8">
+              <label for="avatar">
+                <span>Picture</span>
+              </label>
+            </div>
+            <div class="cell small-3">
+              <p class="help-text">Select a file from your computer</p>
+              <label for="avatar" class="secondary button">Upload file</label>
+              <input type="file" id="avatar" name="avatar" class="show-for-sr">
+              <input type="hidden" name="old_avatar" value="<%= user.avatar %>">
+            </div>
+            <div class="cell small-5">
+              <p class="help-text">Or paste an Url</p>
+              <input type="text" name="avatar_url">
+            </div>
+          </div>
         </fieldset>
         <fieldset>
-          <label><span>Github URL</span>
+          <label>
+            <span>Github URL</span>
             <input type="url" name="githubUrl" value="<%= user.githubUrl %>">
           </label>
         </fieldset>
