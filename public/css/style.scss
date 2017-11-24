@@ -7,6 +7,7 @@ $tool-bar-size: 33vw;
 $tool-bar-max: 380px;
 $tool-bar-min: 320px;
 $secondary-text-color: #666;
+$primary-color: #00A130;
 
 #banner {
   background-color: $banner-color;
@@ -21,9 +22,9 @@ $secondary-text-color: #666;
   visibility: hidden;
 }
 .out {
-  position: absolute;
-  left: 120vh;
   height: 10px;
+  left: 120vh;
+  position: absolute;
 }
 .top-bar {
   background-color: $tool-bar-bg;
@@ -41,23 +42,23 @@ $secondary-text-color: #666;
   padding: 2rem;
 }
 .tool-bar-size {
-  width: $tool-bar-size;
   max-width: $tool-bar-max;
   min-width: $tool-bar-min;
+  width: $tool-bar-size;
 }
 .user-control,
 .user-tools {
-  @extend .tool-bar-size;
-  position: fixed;
-  padding: 1rem 1rem 0;
   background: $tool-bar-bg;
   height: $controls-height;
+  padding: 1rem 1rem 0;
+  position: fixed;
+  @extend .tool-bar-size;
 }
 .user-control {
-  top: 0;
-  z-index: 100;
   display: flex;
   justify-content: space-between;
+  top: 0;
+  z-index: 100;
 
   .user-username {
     font-size: 1.5rem;
@@ -93,26 +94,27 @@ $secondary-text-color: #666;
 }
 .user-pile {
   background-color: $tool-bar-bg;
-  size: 33vw;
+  height: 100vh;
   max-width: 380px;
   min-width: 320px;
-  height: 100vh;
+  size: 33vw;
 
   .chunk {
-    position: relative;
     background: $tool-bar-bg-highlight;
-    padding: 1rem;
     border-bottom: 3px solid $tool-bar-bg;
+    min-height: 7.5rem;
+    padding: 1rem;
+    position: relative;
     transition: background-color, .5s;
 
     .chunk-controls {
+      //background: $tool-bar-bg-highlight;
+      bottom: -.5rem;
       display: none;
+      padding: 0 .5rem;
       position: absolute;
-      background: $tool-bar-bg-highlight;
-      top: 0;
       right: 0;
-      padding: 1.5rem .5rem;
-      height: 100%;
+      //height: 100%;
     }
     &:hover {
       .chunk-controls {
@@ -122,17 +124,13 @@ $secondary-text-color: #666;
     &.copied {
       background-color: lighten($tool-bar-bg-highlight, 10%);
       &:after {
-        content: 'Copied!';
+        bottom: 0.5rem;
         color: $tool-bar-color;
         font-size: 1.25rem;
-        font-weight: Bold;
-        position: absolute;
-        top: 65%;
-        right: 3rem;
+        left: 1rem;
       }
     }
   }
-
 
   .chunk-content {
     //display: none;
@@ -148,17 +146,34 @@ $secondary-text-color: #666;
     color: darken($tool-bar-color, 5%);
     font-size: 80%;
     margin-bottom: 0;
-    white-space: nowrap;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
-
 }
+
+.chunk {
+  position: relative;
+
+  &.copied {
+
+    &:after {
+      bottom: -3rem;
+      color: $primary-color;
+      content: 'Copied!';
+      font-size: 2rem;
+      font-weight: 700;
+      left: 0;
+      position: absolute;
+    }
+  }
+}
+
 .chunk-lang {
-  font-size: 70%;
-  text-transform: uppercase;
+  font-size: 80%;
   margin-bottom: 0;
+  text-transform: uppercase;
 }
 
 .main-piles {
@@ -169,15 +184,15 @@ $secondary-text-color: #666;
   font-size: 4em;
 }
 .reveal.main {
-    width: 66%;
-    max-width: none;
-    height: 100%;
-    height: 100vh;
-    min-height: 100vh;
-    margin-left: 0;
-    border: 0;
-    border-radius: 0;
-    border: none;
+  border: 0;
+  border: none;
+  border-radius: 0;
+  height: 100%;
+  height: 100vh;
+  margin-left: 0;
+  max-width: none;
+  min-height: 100vh;
+  width: 66%;
 }
 label > span {
   color: $secondary-text-color;
