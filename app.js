@@ -8,15 +8,13 @@ const bodyParser = require("body-parser");
 const layouts = require("express-ejs-layouts");
 const session = require("express-session");
 const mongoose = require("mongoose");
-//const findOrCreate = require("mongoose-findorcreate");
 const MongoStore = require("connect-mongo")(session);
 const bcrypt = require("bcrypt");
 const LocalStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
-//const User = require("./models/User");
 const multer = require("multer");
 
-const databaseURL = "mongodb://localhost/ih-cachitos";
+const databaseURL = process.env.DB_URL;
 mongoose.connect(databaseURL, { useMongoClient: true });
 
 const passport = require("passport");
