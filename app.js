@@ -16,7 +16,7 @@ const flash = require("connect-flash");
 //const User = require("./models/User");
 const multer = require("multer");
 
-const databaseURL = "mongodb://localhost/ih-cachitos";
+const databaseURL = process.env.DB_URL;
 mongoose.connect(databaseURL, { useMongoClient: true });
 
 const passport = require("passport");
