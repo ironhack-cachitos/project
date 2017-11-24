@@ -93,7 +93,7 @@ $primary-color: #00A130;
   }
 }
 .chunk-list {
-  margin-top: $controls-height;
+  padding: $controls-height 0;
 }
 hr.inset {
   border-top: 2px solid lighten($tool-bar-bg, 4%);
