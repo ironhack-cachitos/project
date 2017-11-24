@@ -22,7 +22,8 @@
           <label for="avatar"><span>Picture</span></label>
           <p class="help-text">Select a file from your computer</p>
           <label for="avatar" class="secondary button">Upload file</label>
-          <input type="file" id="avatar" name="avatar" class="show-for-sr" value="<%= user.avatar %>">
+          <input type="file" id="avatar" name="avatar" class="show-for-sr">
+          <input type="hidden" name="old_avatar" value="<%= user.avatar %>">
         </fieldset>
         <fieldset>
           <label><span>Github URL</span>
