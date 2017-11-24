@@ -1,7 +1,13 @@
 module.exports = [
-  'javascript',
+  'JavaScript',
   'JSON',
   'HTML',
   'CSS',
-  'Shell'
+  'Python',
+  'Bash',
+  'PHP',
+  'Shell',
+  'Ruby',
+  'SQL',
+  'Markdown'
 ];
