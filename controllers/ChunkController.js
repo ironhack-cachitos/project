@@ -145,8 +145,17 @@ module.exports = {
     //Falta por chequear que el user es el dueño del chunk
     // antes de dejarle borrarlo
     Chunk.findByIdAndRemove(req.params.id)
-      .then(() => {
-        return res.redirect("/main");
+      .then((chunk) => {
+        Pile.findOneAndUpdate(
+          { owner: req.user._id },
+          {
+            $pop: { elements: {chunk: chunk._id} }
+          }
+        )
+          .then(() => {
+            return res.redirect("/main");
+          })
+          .catch(err => next(err));
       })
       .catch(err => next(err));
   },
