@@ -19,6 +19,7 @@
     "express": "~4.14.1",
     "express-ejs-layouts": "~2.2.0",
     "express-session": "^1.15.6",
+    "flash": "^1.1.0",
     "mongoose": "~4.8.5",
     "mongoose-findorcreate": "^2.0.0",
     "morgan": "~1.7.0",
