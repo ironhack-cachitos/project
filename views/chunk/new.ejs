@@ -3,28 +3,28 @@
     <div class="grid-x align-center align-middle">
       <div class="cell medium-4">
         <legend><h3>New 'cachito'</h3></legend>
-        <div>
+        <fieldset>
           <label><span>Name</span>
             <input type="text" name="name" placeholder="Name" maxlength="40">
           </label>
-        </div>
-        <div>
+        </fieldset>
+        <fieldset>
           <label><span>Description</span>
             <input type="text" name="description" placeholder="Description">
           </label>
-        </div>
-        <div>
+        </fieldset>
+        <fieldset>
           <label><span>Code</span>
-            <textarea name="content" id="content" cols="30" rows="10"></textarea>
+            <textarea name="content" id="content" cols="30" rows="8"></textarea>
           </label>
-        </div>
-        <div>
+        </fieldset>
+        <fieldset>
           <label><span>Tags</span>
             <input type="text" name="tags" placeholder="tags, tags, tags">
           </label>
           <p class="help-text">A list, separated by commas</p>
-        </div>
-        <div>
+        </fieldset>
+        <fieldset>
           <label><span>Language</span>
             <select name="language" id="language">
               <% langs.forEach((lang) => { %>
@@ -32,8 +32,8 @@
               <% }) %>
             </select>
           </label>
-        </div>
-        <div>
+        </fieldset>
+        <div class="float-right">
           <button class="large button" type="submit">Create</button>
         </div>
       </div>
