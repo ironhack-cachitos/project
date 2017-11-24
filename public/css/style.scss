@@ -207,6 +207,11 @@ hr.inset {
   min-height: 100vh;
   width: 66%;
 }
+@media (min-width: 1151px) {
+  .reveal.main {
+    width: calc(100vw - 380px);
+  }
+}
 label > span {
   color: $secondary-text-color;
   display: block;
