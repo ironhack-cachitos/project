@@ -5,7 +5,7 @@
       <div class="user-control">
         <% if (user) { %>
           <div class="user-picture">
-            <img src="<%= user.avatar %>" alt="Avatar of <%= user.username %>" width="42" height="42">
+            <img src="<%= user.avatar %>" alt="Avatar of <%= user.username %>" width="45" height="45">
           </div>
           <div class="user-username">
             <a href="/user/edit?id=<%= user.id %>" data-ajax-open="true"><%= user.username %></a>
@@ -18,9 +18,7 @@
       </div>
       <% if (typeof(chunks) !== "undefined"){ %>
         <% if (chunks.length > 0) { %>
-          <section class="chunk-list grid-y grid-padding-y">
-            <% include pile/list.ejs %>
-          </section>
+          <% include pile/list.ejs %>
         <% } else {%>
           <div class="lateral-bar-message big-callout">
             <p>Your collection of 'cachitos' is empty.</p>

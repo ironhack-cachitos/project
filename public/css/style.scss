@@ -149,6 +149,11 @@ hr.inset {
     font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 0;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .chunk-description {
     color: darken($tool-bar-color, 5%);

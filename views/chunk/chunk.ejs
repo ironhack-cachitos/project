@@ -1,4 +1,5 @@
-<div class="chunk">
+<% if (chunk){ %>
+<div class="chunk" data-id="<%= chunk.id %>">
   <h4 class="chunk-name"><%= chunk.name %></h4>
   <p class="chunk-description"><%= chunk.description %></p>
   <p class="chunk-lang"><%= chunk.language %></p>
@@ -16,3 +17,4 @@
     </div>
   </div>
 </div>
+<% } %>

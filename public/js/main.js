@@ -19,13 +19,13 @@ function init(){
   const $chunkModal = $('#chunk-modal');
 
   // Abre el login en su modal
-  $(document).on('click', '#login-button', () => {
-    $.ajax({url: loginModalUrl})
-    .then( resp =>{
-      $loginModal.html(resp).foundation('open');
-    })
-    .catch(err => console.log(err));
-  });
+  // $(document).on('click', '#login-button', () => {
+  //   $.ajax({url: loginModalUrl})
+  //   .then( resp =>{
+  //     $loginModal.html(resp).foundation('open');
+  //   })
+  //   .catch(err => console.log(err));
+  // });
 
   // $('#login-button').on('click', () => {
   //   $.ajax({url: loginModalUrl})
@@ -36,7 +36,7 @@ function init(){
   // });
 
   // Abre los modales de edición
-  $(document).on('click', '.chunk-edit', () => {
+  $(document).on('click', '.chunk-edit', event => {
     let target = $(event.target).attr('data-edit-target');
     $.ajax({url: editModalUrl + '&id=' + target})
       .then(resp => {
@@ -54,7 +54,7 @@ function init(){
   // });
 
   // Abre los modales de vistas
-  $(document).on('click', '.chunk-view', () => {
+  $(document).on('click', '.chunk-view', event => {
     let target = $(event.target).attr('data-view-target');
     $.ajax({url: detailModalUrl + '&id=' + target})
       .then(resp => {
@@ -73,7 +73,7 @@ function init(){
 
   // Inicializa los modales en links
 
-  $(document).on('click', '[data-ajax-open="true"]', () => {
+  $(document).on('click', '[data-ajax-open="true"]', event => {
     event.preventDefault();
     let target = $(event.target).attr('href');
     let param = target.indexOf('?') == -1 ? '?' : '&';
@@ -110,22 +110,22 @@ function init(){
   //Inicializa los botones de copia
   var clipboard = new Clipboard('.chunk-copy');
 
-  clipboard.on('success', (e) => {
+  clipboard.on('success', event => {
     $(event.target).parents('.chunk').addClass('copied');
-    // console.info('Action:', e.action);
-    console.info('Copied!:', e.text);
-    // console.info('Trigger:', e.trigger);
-    e.clearSelection();
+    // console.info('Action:', event.action);
+    console.info('Copied!:', event.text);
+    // console.info('Trigger:', event.trigger);
+    event.clearSelection();
   });
 
-  clipboard.on('error', (e) => {
-      console.error('Action:', e.action);
+  clipboard.on('error', event => {
+      console.error('Action:', event.action);
       // console.error('Trigger:', e.trigger);
   });
 
   // Limpiamos la clase de copies en el mouseleave y blur
   // en todos los Botones de copia
-  $(document).on('mouseleave', '.chunk-copy', () => {
+  $(document).on('mouseleave', '.chunk-copy', event => {
     $(event.target).parents('.chunk').removeClass('copied');
   });
 }

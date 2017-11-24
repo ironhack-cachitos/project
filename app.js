@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const path = require("path");
 const favicon = require("serve-favicon");
@@ -5,14 +6,14 @@ const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const layouts = require("express-ejs-layouts");
-const mongoose = require("mongoose");
-const findOrCreate = require("mongoose-findorcreate");
 const session = require("express-session");
+const mongoose = require("mongoose");
+//const findOrCreate = require("mongoose-findorcreate");
 const MongoStore = require("connect-mongo")(session);
 const bcrypt = require("bcrypt");
 const LocalStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
-const User = require("./models/User");
+//const User = require("./models/User");
 const multer = require("multer");
 
 const databaseURL = "mongodb://localhost/ih-cachitos";
@@ -33,6 +34,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads/')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
 app.use(layouts);
 
 app.use(
@@ -55,7 +57,7 @@ app.use(passport.session());
 
 app.use((req, res, next) => {
   res.locals.user = req.user;
-  res.locals.title = "Cachitos de Ironhack";
+  res.locals.title = "{cachitos}";
   next();
 });
 
