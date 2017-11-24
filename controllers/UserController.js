@@ -22,7 +22,7 @@ module.exports = {
       .catch(err => next(err));
   },
   findOnePost: (req, res, next) => {
-    let avatar = req.file ? `/uploads/user-pictures/${req.file.filename}` : req.body.avatar;
+    let avatar = req.file ? `/uploads/user-pictures/${req.file.filename}` : req.body.old_avatar;
     User.findByIdAndUpdate(req.params.id, {
       $set: {
         fullname: req.body.fullname,
