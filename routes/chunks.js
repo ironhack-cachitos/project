@@ -9,7 +9,7 @@ router.post("/new", ensureLoggedIn("/"), ChunkController.postNew);
 router.get("/detail", ensureLoggedIn("/"), ChunkController.getDetail);
 
 router.get("/edit", ensureLoggedIn("/"), ChunkController.getEdit);
-router.post("/edit", ensureLoggedIn("/"), ChunkController.postEdit);
+router.post("/edit/:id", ensureLoggedIn("/"), ChunkController.postEdit);
 
 router.get("/delete", ensureLoggedIn("/"), ChunkController.getDelete);
 router.post("/delete/:id", ensureLoggedIn("/"), ChunkController.postDelete);

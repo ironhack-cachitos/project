@@ -90,14 +90,15 @@ module.exports = {
     };
     //Tenemos que hacer un check de si el cachito pertenece
     //al usuario (lo actualizamos) o hay que guardalo como nuevo
-    Chunk.findById(chunkId, { fields: { creator: 1 } })
+    Chunk.findById(chunkId)
       .then(chunk => {
-        if (chunk.creator == req.user._id) {
+        console.info(chunk.creator, req.user._id);
+        if (chunk.creator.equals(req.user._id)) {
           Chunk.findByIdAndUpdate(chunkId, {
             $set: chunkInfo
           })
             .then(() => {
-              return res.redirect(`/chunk/detail/${chunk.id}`);
+              return res.redirect("/main");
             })
             .catch(err => next(err));
         } else {
